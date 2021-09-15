@@ -3,8 +3,14 @@
   margin-bottom: 10px;
   background-color: #72917A;
  }
+
+ .wrapper {
+   max-width: 1160px;
+   margin: 0 auto;
+ }
  
  .logo {
    width: 70px;
+   margin-left: 2px;
    fill: rgba(184, 230, 196, 0.8);
  }
