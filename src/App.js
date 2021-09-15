@@ -8,22 +8,24 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import News from './components/News/News';
 import Gallery from './components/Gallery/Gallery';
 import Settings from './components/Settings/Settings';
+import Svgs from './components/Svgs/Svgs';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
+        <Svgs/>
         <Header />
         <div className="app-wrapper">
-        <Navbar />
-        <div className="content">
-          <Route path="/profile" component={Profile}/>
-          <Route path="/messages" component={Messages}/>
-          <Route path="/news" component={News}/>
-          <Route path="/gallery" component={Gallery}/>
-          <Route path="/settings" component={Settings}/>
+          <Navbar />
+          <div className="content">
+            <Route path="/profile" component={Profile}/>
+            <Route path="/messages" component={Messages}/>
+            <Route path="/news" component={News}/>
+            <Route path="/gallery" component={Gallery}/>
+            <Route path="/settings" component={Settings}/>
+          </div>
         </div>
-      </div>
       </div>
     </BrowserRouter>
   );

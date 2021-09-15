@@ -4,6 +4,7 @@
   background-color: #72917A;
  }
  
- .header img {
-   width: 100px;
+ .logo {
+   width: 70px;
+   fill: rgba(184, 230, 196, 0.8);
  }
