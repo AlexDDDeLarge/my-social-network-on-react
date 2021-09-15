@@ -1,0 +1,17 @@
+.Messages {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "di ch"
+  ;
+  gap: 10px;
+}
+
+.messagesDialogs {
+  grid-area: di;
+}
+
+.messagesChat {
+ grid-area: ch;
+}

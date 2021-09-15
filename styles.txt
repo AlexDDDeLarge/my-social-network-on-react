@@ -1,0 +1,20 @@
+header {
+  background-color: #72917A;
+}
+
+nav {
+  background-color: rgba(184, 230, 196, 0.67);
+}
+
+items {
+  background-color: rgba(184, 230, 196, 0.8);
+}
+
+body {
+  color: #363636;
+}
+
+text {
+  color: #363636; //main
+  color: #212121; // a:active
+}
