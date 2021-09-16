@@ -1,0 +1,18 @@
+.message.toMe {
+  background-color: lightsalmon;
+}
+.message.fromMe {
+  background-color: salmon;
+}
+
+.message.forwared {
+  background-color: tomato;
+}
+
+.message.replyToMe {
+  background-color: lightpink;
+}
+
+.message.replyFromMe {
+  background-color: lightcoral;
+}

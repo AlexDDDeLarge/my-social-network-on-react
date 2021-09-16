@@ -8,10 +8,17 @@
   gap: 10px;
 }
 
-.messagesDialogs {
+.dialogs {
   grid-area: di;
+  padding: 10px;
+  border-right: 1px solid #363636;
+}
+
+.dialogsItem.active {
+  font-weight: 500;
 }
 
 .messagesChat {
  grid-area: ch;
+ padding: 10px;
 }
