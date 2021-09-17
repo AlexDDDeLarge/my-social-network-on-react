@@ -11,21 +11,6 @@ const Navbar = (props) => {
       <NavItem relativePath="/news" pageName="News"/>
       <NavItem relativePath="/gallery" pageName="Gallery"/>
       <NavItem relativePath="/settings" pageName="Settings"/>
-      {/* <div className={style.nav__item}>
-        <NavLink to="/profile">Profile</NavLink>
-      </div>
-      <div className={style.nav__item}>
-        <NavLink to="/messages">Messages</NavLink>
-      </div>
-      <div className={style.nav__item}>
-        <NavLink to="/news">News</NavLink>
-      </div>
-      <div className={style.nav__item}>
-        <NavLink to="/gallery">Gallery</NavLink>
-      </div>
-      <div className={style.nav__item}>
-        <NavLink to="/settings">Settings</NavLink>
-      </div> */}
     </nav>
   )
 }

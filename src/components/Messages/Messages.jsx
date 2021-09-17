@@ -44,11 +44,11 @@ const Messages = (props) => {
     <div className={style.Messages}>
       <div className={style.dialogs}>
         {dialogsElements}
-        {/*<Dialog firstName="Vlad" lastName="B" userId="a5"/> */}
       </div>
-      <Route exact path={`/messages/a2`}>
+      {/* <Route exact path={`/messages/a2`}>
         <Chat data={messagesData} personId="a2"/>
-      </Route>
+      </Route> */}
+      <Route exact path={`/messages/a2`} render={() => <Chat data={messagesData} personId="a2"/>}/>
     </div>
   )
 }

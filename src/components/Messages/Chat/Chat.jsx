@@ -14,11 +14,6 @@ const Chat = (props) => {
     <div id={props.userId} className={style.сhat}>
       <div className={style.chatBox}>
         {messages}
-        {/* <ChatMessage type="toMe" text="Hi, Dima. what's cooking good loking?" />
-        <ChatMessage type="fromMe" text="Hi, Leyla. I'm fine. What's up?" />
-        <ChatMessage type="forwarded" text="A. Forwared" />
-        <ChatMessage type="replyToMe" text="B. Reply to me" />
-        <ChatMessage type="replyFromMe" text="C. Reply from me" /> */}
       </div>
       <div className={style.inputBox}>
         <textarea name="" id="" cols="30" rows="10" placeholder="Enter message text"></textarea>
