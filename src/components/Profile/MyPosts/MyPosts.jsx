@@ -3,18 +3,7 @@ import style from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  let PostsConstructor = function (id, likeCount, text) {
-    this.id = id;
-    this.likeCount = likeCount;
-    this.text = text;
-  };
-
-  let postsData = [
-    new PostsConstructor("p1", 12, "Медитация - круто."),
-    new PostsConstructor("p2", 500, "Наруто - это круто."),
-  ];
-
-  let postsElements = postsData.map((elem) => (
+  let postsElements = props.posts.map((elem) => (
     <Post postId={elem.id} text={elem.text} likesCount={elem.likeCount} />
   ));
 
@@ -30,7 +19,9 @@ const MyPosts = (props) => {
         ></textarea>
         <button>Add a new post</button>
       </div>
-      <div className={style.posts}>{postsElements}</div>
+      <div className={style.posts}>
+        {postsElements}
+      </div>
     </div>
   );
 };

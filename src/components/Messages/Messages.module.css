@@ -1,24 +1,22 @@
 .Messages {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto;
+  /* grid-template-rows: auto; */
+  /* grid-template-rows: 1fr; */
   grid-template-areas: 
   "di ch"
   ;
   gap: 10px;
+  min-height: 80vh;
+  height: 100%;
 }
 
 .dialogs {
+  min-height: 100%;
   grid-area: di;
   padding: 10px;
   border-right: 1px solid #363636;
-}
+  border-radius: 5px;
 
-.dialogsItem.active {
-  font-weight: 500;
-}
-
-.messagesChat {
- grid-area: ch;
- padding: 10px;
+ background-color: #8DAC95;
 }

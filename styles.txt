@@ -3,11 +3,11 @@ header {
 }
 
 nav {
-  background-color: rgba(184, 230, 196, 0.67);
+  background-color: #8DAC95;
 }
 
 items {
-  background-color: rgba(184, 230, 196, 0.8);
+  background-color: #AFDABA;
 }
 
 body {

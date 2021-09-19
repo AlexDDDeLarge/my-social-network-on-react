@@ -15,8 +15,7 @@ body {
   display:  grid;
   max-width: 1160px;
   margin: 0 auto;
-  padding: 0 10px;
-  /* grid-template-columns: 2fr 10fr; */
+  /* padding: 0 10px; */
   grid-template-columns: auto 1fr;
   grid-template-rows: auto;
   gap: 10px;
@@ -30,5 +29,4 @@ body {
 .content {
   grid-area: c;
   border-radius: 5px;
-  background-color: rgba(184, 230, 196, 0.67);
 }

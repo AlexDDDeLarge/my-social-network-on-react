@@ -3,12 +3,11 @@ import style from './Chat.module.css'
 import ChatMessage from './ChatMessage/ChatMessage';
 
 const Chat = (props) => {
-
-  let messages = props.data.map(function (elem) {
-    return (
-      <ChatMessage messageId={elem.id} type={elem.type} text={elem.text}/>
-    )
-  })
+  let messages = props.messages.map(function (elem) {
+  return (
+    <ChatMessage messageId={`${elem.dialogWithUser}${elem.messageId}`} type={elem.type} text={elem.text}/>
+  )
+  });
 
   return (
     <div id={props.userId} className={style.сhat}>

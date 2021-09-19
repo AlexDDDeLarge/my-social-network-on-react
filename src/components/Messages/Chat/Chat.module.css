@@ -1,11 +1,23 @@
 .сhat {
-  background-color: lightblue;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1.5px solid #8DAC95;
+  
+  background-color: #8DAC95;
+
+  color: #000000;
 }
 
 .chatBox {
-  background-color: lightyellow;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* border: 1.5px solid #8DAC95;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0; */
+  background-color: #363636;
 }
 
 .inputBox {
- border-top: 1px solid #363636;
+ background-color: #8DAC95;
 }
+/* rgba(141, 172, 149,) */

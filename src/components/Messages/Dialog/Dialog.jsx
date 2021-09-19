@@ -8,8 +8,8 @@ const Dialog = (props) => {
 
   
   return (
-  <div>
-     <NavLink to={path} activeClassName={style.active} className={style.dialog}>{name}</NavLink>     
+    <div>
+      <NavLink to={`/messages/${props.path}`} activeClassName={style.active} className={style.dialog}>{name}</NavLink>     
     </div>  
   )
 }

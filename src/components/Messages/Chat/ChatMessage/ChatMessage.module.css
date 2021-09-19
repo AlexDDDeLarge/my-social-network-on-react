@@ -1,18 +1,71 @@
-.message.toMe {
-  background-color: lightsalmon;
+.message {
+  position: relative;
+  padding: 8px 16px;
+  margin: 5px 12% 5px 6%;
+  border-radius: 10px 10px 10px 0;
+
+  background-color: #AFDABA;
 }
-.message.fromMe {
-  background-color: salmon;
+
+.message.from {
+  margin: 5px 6% 5px 12%;
+  border-radius: 10px 10px 0px 10px;
 }
 
 .message.forwared {
-  background-color: tomato;
+  background-color: #72917A;
+}
+.message.reply {
+  background-color: #D9FBE4;
+}
+/* BEFORE AND AFTER */
+
+.message.to::before,
+.message.to::after,
+.message.from::before,
+.message.from::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  box-sizing: content-box;
 }
 
-.message.replyToMe {
-  background-color: lightpink;
+.message.to::before {
+  left: -14px;
+  width: 0;
+  height: 0;
+  border-bottom: 14px solid #AFDABA;
+  border-left: 14px solid transparent;
 }
 
-.message.replyFromMe {
-  background-color: lightcoral;
+.message.to::after {
+  left: -24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 0 50% 50% 0;
+  background-color: #363636;
+}
+
+.message.from::before {
+  right: -14px;
+  width: 0;
+  height: 0;
+  border-bottom: 14px solid #AFDABA;
+  border-right: 14px solid transparent;
+}
+
+.message.from::after {
+  right: -24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 0 0 50%;
+  background-color: #363636;
+}
+
+.message.forwared::before {
+  border-bottom: 14px solid #72917A;
+}
+
+.message.reply::before {
+  border-bottom: 14px solid #D9FBE4;
 }

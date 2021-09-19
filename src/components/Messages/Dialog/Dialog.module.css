@@ -1,7 +1,31 @@
 .dialog {
-  color: yellowgreen;
+  position: relative;
+  display: block;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 30px;
+  border-bottom: 1px solid #72917A;
+
+  text-decoration: none;
+  color: #363636;
 }
 
 .dialog.active {
-  color: red;
+
+  /* background-color: #72917A; */
+
+  font-weight: 500;
+}
+
+.dialog.active::after {
+  content: ""; 
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0, -50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  border-top: 2.5px solid #363636;
+  border-right: 2.5px solid #363636;
+  /* background-color: #72917A; */
 }
