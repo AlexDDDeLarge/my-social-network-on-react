@@ -7,9 +7,9 @@ const Navbar = (props) => {
   return (
     <nav className={style.nav}>
       <NavItem relativePath="/profile" pageName="Profile"/>
+      <NavItem relativePath="/friends" pageName="Friends"/>
       <NavItem relativePath="/messages" pageName="Messages"/>
       <NavItem relativePath="/news" pageName="News"/>
-      <NavItem relativePath="/gallery" pageName="Gallery"/>
       <NavItem relativePath="/settings" pageName="Settings"/>
     </nav>
   )

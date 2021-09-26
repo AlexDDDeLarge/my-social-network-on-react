@@ -1,6 +1,26 @@
 .nav {
   grid-area: n;
+
   padding: 4px;
   border-radius: 5px;
+
   background-color: #8DAC95;
 }
+
+/* Адаптация */
+
+/* .nav {
+  grid-area: n;
+
+  padding: 8px;
+  border-radius: 5px;
+
+  background-color: #8DAC95;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    padding: 4px;
+  }
+} */
+
