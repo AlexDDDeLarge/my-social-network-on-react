@@ -1,9 +1,10 @@
 .nav {
   grid-area: n;
 
-  padding: 4px;
-  border-radius: 5px;
+  padding: 0 7px 0;
+  border-radius: 10px;
 
+  /* background-color: #AFDABA; */
   background-color: #8DAC95;
 }
 
