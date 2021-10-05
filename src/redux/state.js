@@ -102,26 +102,14 @@ let store = {
       this._state.messagesPage.dialogs.map(
         (elem) => {
           if (action.dialogWithUser === elem.userId) {
-            let newMessages = new MessagesConstructor(action.messageId, action.dialogWithUser, action.typeOfMessage, action.text);
+            let newMessages = new MessagesConstructor(action.messageId, action.dialogWithUser, action.typeOfMessage, this.getState().messagesPage.newMessageCurrentText);
             elem.messages.push(newMessages);
             this._state.messagesPage.newMessageCurrentText = "";
-            // this._callSubscriber(this.getState())
           }
-        }, store
-      );
+        });
       this._callSubscriber(this.getState())
     } 
   }
-  /* updateCurrentTextOfTheNewPost(newValue) {
-    this._state.profilePage.newPostCurrentText = newValue;
-    this._callSubscriber(this);
-  },
-  addPost() {
-    let newPost = new PostsConstructor("p3", 0, this._state.profilePage.newPostCurrentText);
-    this._state.profilePage.posts.push( newPost );
-    this._state.profilePage.newPostCurrentText = "";
-    this._callSubscriber(this);
-  } */
 };
 
 export const UpdateCurrentTextOfTheNewPostActionConstructor = function (text) {
@@ -135,12 +123,11 @@ export const UpdateNewMessageCurrentTextCreator = function (text) {
   this.type = UPDATE_NEW_MESSAGE_CURRENT_TEXT;
   this.text = text;
 }
-export const SendMessageCreator = function (messageId, dialogWithUser, text) {
+export const SendMessageCreator = function (messageId, dialogWithUser) {
   this.type = SEND_MESSAGE;
   this.typeOfMessage = "fromMe";
   this.messageId = messageId;
   this.dialogWithUser = dialogWithUser;
-  this.text = text;
 }
 
 window.store = store;

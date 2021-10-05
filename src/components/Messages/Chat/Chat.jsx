@@ -10,20 +10,17 @@ const Chat = (props) => {
   )
   });
 
-  let textOfNewMessage = React.createRef();
-
-  let updateText = () => {
-    let text = textOfNewMessage.current.value;
+  let updateText = (evt) => {
+    let text = evt.target.value;
     let action = new UpdateNewMessageCurrentTextCreator(text)
     props.dispatch(action)
   };
 
-  let addNewMessages = () => {
+  let addNewMessages = (evt) => {
     let messageId = "message" + "1";
-    let text = textOfNewMessage.current.value;
-    let action = new SendMessageCreator(messageId, props.dialogWithUser, text);
+    let action = new SendMessageCreator(messageId, props.dialogWithUser);
     props.dispatch(action);
-  }  
+  };
 
   return (
     <div id={props.userId} className={style.сhat}>
@@ -33,10 +30,7 @@ const Chat = (props) => {
       <div className={style.inputBox}>
         <textarea
           value={props.newMessageCurrentText}
-          ref={ textOfNewMessage }
           onChange = { updateText }
-          cols="30" 
-          rows="10" 
           placeholder="Enter message text"></textarea>
         <button onClick={ addNewMessages }>
           Add a new message
