@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Chat.module.css'
 import ChatMessage from './ChatMessage/ChatMessage';
-import { UpdateNewMessageCurrentTextCreator, SendMessageCreator } from "./../../../redux/state";
+import { UpdateNewMessageCurrentTextCreator, SendMessageCreator } from "./../../../redux/messagesPageReducer";
 
 const Chat = (props) => {
   let messages = props.messages.map(function (elem) {

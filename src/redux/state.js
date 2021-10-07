@@ -1,28 +1,6 @@
-let MessagesConstructor = function (messageId, dialogWithUser, type, text) {
-  this.messageId = messageId;
-  this.dialogWithUser = dialogWithUser;
-  this.type = type;
-  this.text = text;
-};
-
-let DialogConstructor = function (userId, firstName, lastName, messages) {
-  this.userId = userId;
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.messages = messages;
-};
-
-let PostsConstructor = function (id, likeCount, text) {
-  this.id = id;
-  this.likeCount = likeCount;
-  this.text = text;
-};
-
-/////
-const UPDATE_CURRENT_TEXT_OF_THE_NEW_POST = "UPDATE-CURRENT-TEXT-OF-THE-NEW-POST";
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_MESSAGE_CURRENT_TEXT = "UPDATE-NEW-MESSAGE-CURRENT-TEXT";
-const SEND_MESSAGE = "SEND-MESSAGE";
+import messagesPageReducer from "./messagesPageReducer";
+import profilePageReducer from "./profilePageReducer";
+import {MessagesConstructor, DialogConstructor, PostsConstructor} from "./functionsConstructor"
 
 let store = {
   _callSubscriber() {
@@ -87,48 +65,12 @@ let store = {
     this._callSubscriber = observer;
   },
   dispatch(action) {
-    if (action.type === UPDATE_CURRENT_TEXT_OF_THE_NEW_POST) {
-      this._state.profilePage.newPostCurrentText = action.newValue;
-      this._callSubscriber(this.getState());
-    } else if (action.type === ADD_POST) {
-      let newPost = new PostsConstructor("p3", 0, this._state.profilePage.newPostCurrentText);
-      this._state.profilePage.posts.push( newPost );
-      this._state.profilePage.newPostCurrentText = "";
-      this._callSubscriber(this.getState());
-    } else if (action.type === UPDATE_NEW_MESSAGE_CURRENT_TEXT) {
-      this._state.messagesPage.newMessageCurrentText = action.text;
-      this._callSubscriber(this.getState())
-    } else if (action.type === SEND_MESSAGE) {
-      this._state.messagesPage.dialogs.map(
-        (elem) => {
-          if (action.dialogWithUser === elem.userId) {
-            let newMessages = new MessagesConstructor(action.messageId, action.dialogWithUser, action.typeOfMessage, this.getState().messagesPage.newMessageCurrentText);
-            elem.messages.push(newMessages);
-            this._state.messagesPage.newMessageCurrentText = "";
-          }
-        });
-      this._callSubscriber(this.getState())
-    } 
+    this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+    this._state.messagesPage = messagesPageReducer(this._state.messagesPage, action);
+
+    this._callSubscriber(this.getState());
   }
 };
-
-export const UpdateCurrentTextOfTheNewPostActionConstructor = function (text) {
-  this.type = UPDATE_CURRENT_TEXT_OF_THE_NEW_POST;
-  this.newValue = text;
-}
-export const AddPostActionCreator = function () {
-  this.type = ADD_POST;
-}
-export const UpdateNewMessageCurrentTextCreator = function (text) {
-  this.type = UPDATE_NEW_MESSAGE_CURRENT_TEXT;
-  this.text = text;
-}
-export const SendMessageCreator = function (messageId, dialogWithUser) {
-  this.type = SEND_MESSAGE;
-  this.typeOfMessage = "fromMe";
-  this.messageId = messageId;
-  this.dialogWithUser = dialogWithUser;
-}
 
 window.store = store;
 
