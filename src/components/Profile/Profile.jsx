@@ -4,7 +4,6 @@ import style from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
-  debugger
   return (
     <div>
         <div className={style.content__bg}></div>

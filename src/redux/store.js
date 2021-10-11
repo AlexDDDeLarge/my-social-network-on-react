@@ -3,9 +3,6 @@ import profilePageReducer from "./profilePageReducer";
 import {MessagesConstructor, DialogConstructor, PostsConstructor} from "./functionsConstructor"
 
 let store = {
-  _callSubscriber() {
-    console.log("State changed");
-  },
   _state: {
     profilePage: {
       posts: [
@@ -57,6 +54,9 @@ let store = {
       ],
       newMessageCurrentText: ""
     }
+  },
+  _callSubscriber() {
+    console.log("State changed");
   },
   getState() {
     return this._state

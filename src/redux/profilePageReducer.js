@@ -3,7 +3,15 @@ import { PostsConstructor } from "./functionsConstructor"
 const UPDATE_CURRENT_TEXT_OF_THE_NEW_POST = "UPDATE-CURRENT-TEXT-OF-THE-NEW-POST";
 const ADD_POST = "ADD-POST";
 
-const profilePageReducer = (state, action) => {
+let initialState = {
+  posts: [
+    new PostsConstructor("p1", 12, "Медитация - круто."),
+    new PostsConstructor("p2", 500, "Наруто - это круто."),
+  ],
+  newPostCurrentText: ""
+}
+
+const profilePageReducer = (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_CURRENT_TEXT_OF_THE_NEW_POST: 
       state.newPostCurrentText = action.newValue;

@@ -1,11 +1,11 @@
-/* .nav__item {
-  margin-bottom: 7px;
+.nav__item {
+  margin-bottom: 5px;
   
 }
 
 .nav__item:last-child {
   margin-bottom: 0;
-} */
+}
 
 /* Адаптация */
 
@@ -29,9 +29,9 @@
   position: relative;
   display: block;
   max-width: 100%;
-  padding: 14px 66px 14px 28px;
-  border-bottom: 1px solid #363636;
-  background-color: inherit;
+  padding: 14px 80px 14px 28px;
+  border-radius: 5px;
+  background-color: #AFDABA;
   text-decoration: none;
 
   font-size: 1.2rem;
@@ -40,22 +40,9 @@
 .nav__item a.nav__link_active:link,
 .nav__item a.nav__link_active:visited {
   position: relative;
-  border-bottom: 1px solid #212121;
+  background-color: #72917a;
   font-weight: 500;
   color: #212121;
-}
-
-.nav__item a.nav__link_active::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 9px;
-  transform: translate(0, -50%) rotate(45deg);
-  display: block;
-  width: 5px;
-  height: 5px;
-  border-top: 2.5px solid #212121;
-  border-right: 2.5px solid #212121;
 }
 
 .nav__item a:link,
