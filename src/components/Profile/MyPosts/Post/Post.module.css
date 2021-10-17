@@ -1,12 +1,12 @@
 .posts__item {
   margin-bottom: 6px;
   padding: 10px;
-  border: 0.5px solid #363636;
+  border: 0.5px solid #000000;
   border-radius: 5px;
 
-  background-color: #AFDABA;
+  background-color: #3E88F3;
 
-  color: #363636;
+  color: #000000;
 }
 
 .posts__item:last-child {

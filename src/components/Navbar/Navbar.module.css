@@ -1,11 +1,12 @@
 .nav {
   grid-area: n;
 
-  padding: 5px 5px;
+  padding: 0 12px;
+  border: 1px solid #013D97;
   border-radius: 5px;
 
-  /* background-color: #AFDABA; */
-  background-color: #8DAC95;
+  /* background-color: #3E88F3; */
+  /* background-color: #6FA4F3; */
 }
 
 /* Адаптация */
@@ -16,7 +17,7 @@
   padding: 8px;
   border-radius: 5px;
 
-  background-color: #8DAC95;
+  background-color: #6FA4F3;
 }
 
 @media screen and (min-width: 768px) {

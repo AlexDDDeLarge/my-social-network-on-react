@@ -9,10 +9,9 @@ html {
 }
 
 body {
-  background-color: #363636;
+  background-color: #000000;
 
   font-family: 'IBM Plex Mono', sans-serif;
-  color: #363636;
 }
 
 .app-wrapper {

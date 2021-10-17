@@ -9,6 +9,7 @@ import Friends from './components/Friends/Friends';
 import Messages from './components/Messages/Messages';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
+import MessagesContainer from './components/Messages/MessagesContainer';
 
 function App(props) {
   return (
@@ -20,14 +21,13 @@ function App(props) {
         <div className="content">
           <Route path="/profile">
             <Profile
-              profilePage={props.state.profilePage} 
-              dispatch={props.dispatch}/>
+              store={props.store}
+            />
           </Route>
           <Route path="/friends" component={Friends}/>
           <Route path="/messages">
-            <Messages 
-              messagesPage={props.state.messagesPage}
-              dispatch={props.dispatch}
+            <MessagesContainer
+              store={props.store}
             /> 
           </Route>
           <Route path="/news" component={News}/>

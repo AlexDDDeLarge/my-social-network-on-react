@@ -4,7 +4,7 @@
   margin: 5px 12% 5px 6%;
   border-radius: 10px 10px 10px 0;
 
-  background-color: #AFDABA;
+  background-color: #3E88F3;
 }
 
 .message.from {
@@ -13,7 +13,7 @@
 }
 
 .message.forwared {
-  background-color: #72917A;
+  background-color: #013D97;
 }
 .message.reply {
   background-color: #D9FBE4;
@@ -34,7 +34,7 @@
   left: -14px;
   width: 0;
   height: 0;
-  border-bottom: 14px solid #AFDABA;
+  border-bottom: 14px solid #3E88F3;
   border-left: 14px solid transparent;
 }
 
@@ -43,14 +43,14 @@
   width: 24px;
   height: 24px;
   border-radius: 0 50% 50% 0;
-  background-color: #363636;
+  background-color: #000000;
 }
 
 .message.from::before {
   right: -14px;
   width: 0;
   height: 0;
-  border-bottom: 14px solid #AFDABA;
+  border-bottom: 14px solid #3E88F3;
   border-right: 14px solid transparent;
 }
 
@@ -59,11 +59,11 @@
   width: 24px;
   height: 24px;
   border-radius: 50% 0 0 50%;
-  background-color: #363636;
+  background-color: #000000;
 }
 
 .message.forwared::before {
-  border-bottom: 14px solid #72917A;
+  border-bottom: 14px solid #013D97;
 }
 
 .message.reply::before {

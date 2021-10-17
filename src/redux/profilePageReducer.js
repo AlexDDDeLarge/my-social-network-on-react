@@ -26,12 +26,16 @@ const profilePageReducer = (state = initialState, action) => {
   }
 }
 
-export const UpdateCurrentTextOfTheNewPostActionConstructor = function (text) {
-  this.type = UPDATE_CURRENT_TEXT_OF_THE_NEW_POST;
-  this.newValue = text;
+export const updateCurrentTextOfTheNewPostActionConstructor = function (text) {
+  return {
+    type: UPDATE_CURRENT_TEXT_OF_THE_NEW_POST,
+    newValue: text
+  }
 }
-export const AddPostActionCreator = function () {
-  this.type = ADD_POST;
+export const addPostActionCreator = function () {
+  return {
+    type: ADD_POST  
+  }
 }
 
 export default profilePageReducer;

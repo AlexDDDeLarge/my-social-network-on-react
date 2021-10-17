@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import { UpdateCurrentTextOfTheNewPostActionConstructor, AddPostActionCreator } from "../../../redux/profilePageReducer";
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((elem) => (
@@ -12,13 +11,11 @@ const MyPosts = (props) => {
 
   let onChangeArea = () => {
     let text = newPost.current.value;
-    let action = new UpdateCurrentTextOfTheNewPostActionConstructor(text);
-    props.dispatch(action);
+    props.updateCurrentTextOfTheNewPost(text);
   };
 
-  let addNewPost = () => {
-    let action = new AddPostActionCreator()
-    props.dispatch(action);
+  let onAddNewPost = () => {
+    props.addPost();
   };
 
   return (
@@ -32,7 +29,7 @@ const MyPosts = (props) => {
           placeholder="Text of your post"
           onChange={ onChangeArea }
         />
-        <button onClick={ addNewPost }>
+        <button onClick={ onAddNewPost }>
           Add a new post
         </button>
       </div>

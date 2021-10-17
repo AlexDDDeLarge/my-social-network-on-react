@@ -66,15 +66,19 @@ const messagesPageReducer = (state = initialState, action) => {
   }
 }
 
-export const UpdateNewMessageCurrentTextCreator = function (text) {
-  this.type = UPDATE_NEW_MESSAGE_CURRENT_TEXT;
-  this.text = text;
+export const updateNewMessageCurrentTextCreator = function (text) {
+  return {
+    type: UPDATE_NEW_MESSAGE_CURRENT_TEXT,
+    text: text
+  }
 }
-export const SendMessageCreator = function (messageId, dialogWithUser) {
-  this.type = SEND_MESSAGE;
-  this.typeOfMessage = "fromMe";
-  this.messageId = messageId;
-  this.dialogWithUser = dialogWithUser;
+export const sendMessageCreator = function (messageId, dialogWithUser) {
+  return {
+    type: SEND_MESSAGE,
+    typeOfMessage: "fromMe",
+    messageId: messageId,
+    dialogWithUser: dialogWithUser
+  }
 }
 
 export default messagesPageReducer;

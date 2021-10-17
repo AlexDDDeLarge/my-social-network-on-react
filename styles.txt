@@ -1,20 +1,20 @@
 header {
-  background-color: #72917A;
+  background-color: #013D97;
 }
 
 nav {
-  background-color: #8DAC95;
+  background-color: #6FA4F3;
 }
 
 items {
-  background-color: #AFDABA;
+  background-color: #3E88F3;
 }
 
 body {
-  color: #363636;
+  color: #000000;
 }
 
 text {
-  color: #363636; //main
+  color: #000000; //main
   color: #212121; // a:active
 }
