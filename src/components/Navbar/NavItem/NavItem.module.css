@@ -30,26 +30,20 @@
   display: block;
   max-width: 100%;
   padding: 14px 80px 14px 28px;
-  border-bottom: 1px solid #013D97;
-  /* border-radius: 5px; */
+  border-bottom: 1px solid #000000;
   box-shadow: inset 0 -1 7px 0 #013D97;
-  /* background-color: #3E88F3; */
   text-decoration: none;
 
   font-size: 1.2rem;
   color: #ffffff;
 }
 
-.nav__item:last-child a {
-  border: none;
-}
-
 .nav__item a.nav__link_active:link,
 .nav__item a.nav__link_active:visited {
   position: relative;
-  /* background-color: #013D97; */
+  border-bottom: 1px solid #3471CB;
   font-weight: 500;
-  color: #013D97;
+  color: #3471CB;
 }
 
 .nav__item a:link,

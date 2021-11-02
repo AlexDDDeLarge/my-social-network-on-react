@@ -14,13 +14,26 @@ let initialState = {
 const profilePageReducer = (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_CURRENT_TEXT_OF_THE_NEW_POST: 
-      state.newPostCurrentText = action.newValue;
-      return state;
-    case ADD_POST: 
+      // let stateCopy = {...state};
+      // stateCopy.newPostCurrentText = action.newValue;
+      // return stateCopy;
+      return {
+        ...state,
+        newPostCurrentText: action.newValue
+      }
+    case ADD_POST: {
       let newPost = new PostsConstructor("p3", 0, state.newPostCurrentText);
-      state.posts.push( newPost );
-      state.newPostCurrentText = "";
-      return state;
+      // let stateCopy = {...state};
+      // stateCopy.posts = [...state.posts];
+      // stateCopy.posts.push( newPost );
+      // stateCopy.newPostCurrentText = "";
+      // return stateCopy;
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostCurrentText: ""
+      }
+    }
     default: 
       return state;
   }

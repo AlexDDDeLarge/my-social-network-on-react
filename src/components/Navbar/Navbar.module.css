@@ -1,12 +1,9 @@
 .nav {
   grid-area: n;
 
-  padding: 0 12px;
-  border: 1px solid #013D97;
+  padding: 6px 12px;
+  background-color: #222222;
   border-radius: 5px;
-
-  /* background-color: #3E88F3; */
-  /* background-color: #6FA4F3; */
 }
 
 /* Адаптация */

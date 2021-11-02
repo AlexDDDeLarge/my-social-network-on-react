@@ -50,17 +50,26 @@ let initialState = {
 const messagesPageReducer = (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_NEW_MESSAGE_CURRENT_TEXT:
-      state.newMessageCurrentText = action.text;
-      return state;
+      return {
+        ...state,
+        newMessageCurrentText: action.text
+      };
     case SEND_MESSAGE:
-      state.dialogs.map((elem) => {
+      let stateCopy = {
+        ...state,
+        dialogs: [...state.dialogs]
+      };
+      for (let i = 0; i < stateCopy.dialogs.length; i++) {
+        stateCopy.dialogs[i].messages = [...state.dialogs[i].messages]
+      }
+      stateCopy.dialogs.map((elem) => {
         if (action.dialogWithUser === elem.userId) {
           let newMessages = new MessagesConstructor(action.messageId, action.dialogWithUser, action.typeOfMessage, state.newMessageCurrentText);
           elem.messages.push(newMessages);
-          state.newMessageCurrentText = "";
+          stateCopy.newMessageCurrentText = "";
         }
       });
-      return state;
+      return stateCopy;
     default: 
       return state;
   }

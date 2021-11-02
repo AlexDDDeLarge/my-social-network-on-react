@@ -6,10 +6,10 @@ import Header from './components/Header/Header.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import Friends from './components/Friends/Friends';
-import Messages from './components/Messages/Messages';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import MessagesContainer from './components/Messages/MessagesContainer';
+import Users from './components/Users/Users';
 
 function App(props) {
   return (
@@ -20,16 +20,13 @@ function App(props) {
         <Navbar />
         <div className="content">
           <Route path="/profile">
-            <Profile
-              store={props.store}
-            />
+            <Profile/>
           </Route>
           <Route path="/friends" component={Friends}/>
           <Route path="/messages">
-            <MessagesContainer
-              store={props.store}
-            /> 
+            <MessagesContainer/> 
           </Route>
+          <Route path="/users" render={() => <Users/>} />
           <Route path="/news" component={News}/>
           <Route path="/settings" component={Settings}/>
         </div>
