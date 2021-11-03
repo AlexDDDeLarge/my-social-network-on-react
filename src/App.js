@@ -9,7 +9,7 @@ import Friends from './components/Friends/Friends';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import MessagesContainer from './components/Messages/MessagesContainer';
-import Users from './components/Users/Users';
+import UsersContainer from './components/Users/UsersContainer';
 
 function App(props) {
   return (
@@ -26,7 +26,7 @@ function App(props) {
           <Route path="/messages">
             <MessagesContainer/> 
           </Route>
-          <Route path="/users" render={() => <Users/>} />
+          <Route path="/users" render={() => <UsersContainer/>} />
           <Route path="/news" component={News}/>
           <Route path="/settings" component={Settings}/>
         </div>
