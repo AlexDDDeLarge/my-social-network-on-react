@@ -4,10 +4,10 @@ const SET_USERS = "SET-USERS";
 
 let initialState = {
   users: [
-    {id: 1, followed: true, fullName: "Dmitry P", status: "sdgg", location: {city: Yampil, country: Ukraine}},
-    {id: 2, followed: false, fullName: "Dmitry H", status: "dsgfdg", location: {city: Odessa, country: Ukraine}},
-    {id: 3, followed: true, fullName: "Anastasia F", status: "sdsgsgsgg", location: {city: Moscow, country: Russia}},
-    {id: 4, followed: false, fullName: "Angelina A", status: "fdgg", location: {city: Moscow, country: Russia}}
+    // {id: 1, protoUrl: "", followed: true, fullName: "Dmitry P", status: "sdgg", location: {city: "Yampil", country: "Ukraine"}},
+    // {id: 2, protoUrl: "", followed: false, fullName: "Dmitry H", status: "dsgfdg", location: {city: "Odessa", country: "Ukraine"}},
+    // {id: 3, protoUrl: "", followed: true, fullName: "Anastasia F", status: "sdsgsgsgg", location: {city: "Moscow", country: "Russia"}},
+    // {id: 4, protoUrl: "", followed: false, fullName: "Angelina A", status: "fdgg", location: {city: "Moscow", country: "Russia"}}
   ]
 }
 
@@ -42,6 +42,6 @@ const usersPageReducer = (state = initialState, action) => {
 
 export const followAC = (userId) => ({type: FOLLOW, userId: userId});
 export const unFollowAC = (userId) => ({type: UNFOLLOW, userId: userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
+export const setUsersAC = (users) => ({type: SET_USERS, users: users});
 
 export default usersPageReducer;
