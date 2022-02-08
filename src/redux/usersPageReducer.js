@@ -3,30 +3,7 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
 
 let initialState = {
-  users: [
-    {
-      id: 1,
-      fullName: "Leyla A",
-      status: "I will return soon",
-      location: {
-        country: "Russia",
-        city: "Moscow"
-      },
-      avatar: "some url",
-      isFollowed: true
-    },
-    {
-      id: 2,
-      fullName: "Emil T",
-      status: "I will return someday",
-      location: {
-        country: "Russia",
-        city: "Moscow"
-      },
-      avatar: "some url",
-      isFollowed: false
-    }
-  ]
+  users: []
 };
 
 const usersPageReducer = (state = initialState, action) => {
@@ -54,17 +31,18 @@ const usersPageReducer = (state = initialState, action) => {
     case SET_USERS: 
       return {
         ...state,
-        users: [...state.users, ...action.users]
+        //users: [...state.users, ...action.users]
+        users: [...action.users]
       }
     default:
       return state;
   }
 };
 
-export const followAC = (userId) => {type: FOLLOW, userId};
+export const followAC = (userId) => ({type: FOLLOW, userId});
 
-export const unfollowAC = (userId) => {type: UNFOLLOW, userId};
+export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
 
-export const setUsersAC = (users) => {type: SET_USERS, users};
+export const setUsersAC = (users) => ({type: SET_USERS, users});
 
 export default usersPageReducer;
