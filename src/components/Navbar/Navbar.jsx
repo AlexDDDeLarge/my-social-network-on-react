@@ -6,6 +6,7 @@ const Navbar = (props) => {
   return (
     <nav className={style.nav}>
       <NavItem relativePath="/profile" pageName="Profile"/>
+      <NavItem relativePath="/users" pageName="Users"/>
       <NavItem relativePath="/friends" pageName="Friends"/>
       <NavItem relativePath="/messages" pageName="Messages"/>
       <NavItem relativePath="/news" pageName="News"/>
