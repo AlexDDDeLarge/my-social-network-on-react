@@ -13,7 +13,7 @@ const usersPageReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map(user => {
           if (user.id === action.userId) {
-            return {...user, isFollowed: true}
+            return {...user, followed: true}
           } 
           return user;
         })
@@ -23,7 +23,7 @@ const usersPageReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map(user => {
           if (user.id === action.userId) {
-            return {...user, isFollowed: false}
+            return {...user, followed: false}
           } 
           return user;
         })
@@ -31,8 +31,8 @@ const usersPageReducer = (state = initialState, action) => {
     case SET_USERS: 
       return {
         ...state,
-        //users: [...state.users, ...action.users]
-        users: [...action.users]
+        users: [...state.users, ...action.users]
+        // users: [...action.users]
       }
     default:
       return state;
