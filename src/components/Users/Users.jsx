@@ -9,17 +9,50 @@ class Users extends React.Component {
     super(props);
   }
 
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=3&page=2`)
-        .then(response => this.props.setUsers(response.data.items))    
-    }
+  componentDidMount() {
+    axios.get(
+      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`
+    )
+      .then(response => {
+        this.props.setUsers(response.data.items);
+        this.props.setTotalCount(response.data.totalCount);
+      })
+  }
+
+  onPageChanged = (page) => {
+    this.props.changePage(page);
+    axios.get(
+      `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}`
+    )
+      .then(response => {
+        this.props.setUsers(response.data.items);
+        this.props.setTotalCount(response.data.totalCount);
+      })
   }
 
   render() {
+    let pagesCount = Math.ceil(this.props.totalCount / this.props.count);
+    let pages = [];
+    for (let i = 1; i <= 15; i++) {
+      pages.push(i);
+    }
+
     return (
-      <div>
-        <button onClick={this.getUsers}>Get users</button>
+      <div className={styles.users}>
+        <div>
+          {
+            pages.map(number => {
+              return (
+                <span
+                  className={(this.props.page === number) ? styles.currentPage: ""}
+                  onClick={(e) => { this.onPageChanged(number) }}
+                >
+                {`${number} `} 
+                </span>
+              )
+            })
+          }
+        </div>
         {
           this.props.users.map(el => {
             return <div className={styles.item} key={el.id}>
@@ -28,7 +61,11 @@ class Users extends React.Component {
                 src={(el.photos.small == true) ? el.photos.small : userDefaultPic}
               />
               <br/>
-              <button onClick={() => el.followed ? this.props.unfollow(el.id) : this.props.follow(el.id)}>
+              <button 
+                onClick={
+                  () => el.followed ? this.props.unfollow(el.id) : this.props.follow(el.id)
+                }
+              >
                 { el.followed ? "Unfollow" : "Follow"}
               </button>
               <p>{el.name}</p>

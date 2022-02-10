@@ -1,5 +1,10 @@
-.item {
+.users {
+  margin: 10px auto;
   color: #ffffff;
+}
+
+.currentPage {
+  font-weight: 900;
 }
 
 .avatar {
