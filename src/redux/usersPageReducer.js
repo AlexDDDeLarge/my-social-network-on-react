@@ -60,11 +60,18 @@ const usersPageReducer = (state = initialState, action) => {
   }
 };
 
-export const followAC = (userId) => ({type: FOLLOW, userId});
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
-export const setUsersAC = (users) => ({type: SET_USERS, users});
-export const setTotalCountAC = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
-export const changePageAC = (pageNumber) => ({type: CHANGE_PAGE, pageNumber});
-export const isFetchingCompletedAC = (isFetching) => ({type: IS_FETCHING_COMPLETED, isFetching});
+// export const followAC = (userId) => ({type: FOLLOW, userId});
+// export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
+// export const setUsersAC = (users) => ({type: SET_USERS, users});
+// export const setTotalCountAC = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
+// export const changePageAC = (pageNumber) => ({type: CHANGE_PAGE, pageNumber});
+// export const isFetchingCompletedAC = (isFetching) => ({type: IS_FETCHING_COMPLETED, isFetching});
+
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
+export const changePage = (pageNumber) => ({type: CHANGE_PAGE, pageNumber});
+export const isFetchingCompleted = (isFetching) => ({type: IS_FETCHING_COMPLETED, isFetching});
 
 export default usersPageReducer;

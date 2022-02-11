@@ -5,7 +5,7 @@ import preloader from "../../../assets/images/Infinity-1s-200px.svg";
 const Preloader = (props) => {
   return (
     <div className={styles.preloader}>
-      {props.isFetching == true && <img src={preloader}/>}
+      <img src={preloader}/>
     </div>  
   )
 };

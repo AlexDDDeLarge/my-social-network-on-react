@@ -28,7 +28,8 @@ const Users = (props) => {
           })
         }
       </div>
-      <Preloader isFetching={props.isFetching}/>
+      {props.isFetching == true && <Preloader/>}
+      
       {
         props.users.map(el => {
           return <div className={styles.item} key={el.id}>
