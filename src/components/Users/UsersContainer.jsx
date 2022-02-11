@@ -1,14 +1,62 @@
 import React from "react";
 import { connect } from "react-redux";
-import { followAC, unfollowAC, setUsersAC, setTotalCountAC, changePageAC } from "../../redux/usersPageReducer";
+import { followAC, unfollowAC, setUsersAC, setTotalCountAC, changePageAC, isFetchingCompletedAC } from "../../redux/usersPageReducer";
+import * as axios from "axios";
 import Users from "./Users";
+
+class UsersContainer extends React.Component {
+
+  constructor (props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.isFetchingCompleted(true);
+    axios.get(
+      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`
+    )
+      .then(response => {
+        this.props.setUsers(response.data.items);
+        this.props.setTotalCount(response.data.totalCount);
+        this.props.isFetchingCompleted(false);
+      })
+  }
+
+  onPageChanged = (page) => {
+    this.props.changePage(page);
+    this.props.isFetchingCompleted(true);
+    axios.get(
+      `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}`
+    )
+      .then(response => {
+        this.props.setUsers(response.data.items);
+        this.props.setTotalCount(response.data.totalCount);
+        this.props.isFetchingCompleted(false);
+      })
+  }
+
+  render() {
+    return <Users 
+      onPageChanged={this.onPageChanged}
+      users={this.props.users}
+      totalCount={this.props.totalCount}
+      count={this.props.count}
+      page={this.props.page}
+      follow={this.props.follow}
+      unfollow={this.props.unfollow}
+      changePage={this.props.changePage}
+      isFetching={this.props.isFetching}
+    />
+  }
+} 
 
 let mapStateToProps = (state) => {
   return {
     users: state.usersPage.users,
     totalCount: state.usersPage.totalCount,
     count: state.usersPage.count,
-    page: state.usersPage.page
+    page: state.usersPage.page,
+    isFetching: state.usersPage.isFetching
   }
 }
 
@@ -28,10 +76,11 @@ let mapDispatchToProps = (dispatch) => {
     },
     changePage(pageNumber) {
       dispatch( changePageAC(pageNumber) );
+    },
+    isFetchingCompleted(isFetching) {
+      dispatch( isFetchingCompletedAC(isFetching) );
     }
   }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
-
-export default UsersContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

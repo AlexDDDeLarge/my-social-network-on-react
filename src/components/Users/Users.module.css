@@ -4,7 +4,8 @@
 }
 
 .currentPage {
-  font-weight: 900;
+  font-weight: 700;
+  color: #3E88F3;
 }
 
 .avatar {
@@ -12,3 +13,10 @@
   height: auto;
   border-radius: 50%;
 }
+
+/* .preloader {
+  width: 40%;
+  margin: 0 auto;
+
+  color:#3E88F3;
+} */
