@@ -51,3 +51,8 @@
 .burgerBtn::after {
   content: "";
 }
+
+.loginBlock,
+.loginBlock a {
+  color: #ffffff;
+}

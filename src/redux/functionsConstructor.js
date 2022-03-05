@@ -12,8 +12,8 @@ export const DialogConstructor = function (userId, firstName, lastName, messages
   this.messages = messages;
 };
 
-export const PostsConstructor = function (id, likeCount, text) {
+/* export const PostsConstructor = function (id, likeCount, text) {
   this.id = id;
   this.likeCount = likeCount;
   this.text = text;
-};
+}; */

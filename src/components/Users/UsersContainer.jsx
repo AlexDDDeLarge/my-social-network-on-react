@@ -1,6 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { follow, unfollow, setUsers, setTotalCount, changePage, isFetchingCompleted } from "../../redux/usersPageReducer";
+import { 
+  follow, 
+  unfollow, 
+  setUsers, 
+  setTotalCount, 
+  changePage, 
+  isFetchingCompleted
+} from "../../redux/usersPageReducer";
 import * as axios from "axios";
 import Users from "./Users";
 
@@ -13,7 +20,9 @@ class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.isFetchingCompleted(true);
     axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`
+      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.page}&count=${this.props.count}`, {
+        withCredentials: true
+      }
     )
       .then(response => {
         this.props.setUsers(response.data.items);
@@ -26,7 +35,9 @@ class UsersContainer extends React.Component {
     this.props.changePage(page);
     this.props.isFetchingCompleted(true);
     axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}`
+      `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}`, {
+        withCredentials: true
+      }
     )
       .then(response => {
         this.props.setUsers(response.data.items);
@@ -36,7 +47,7 @@ class UsersContainer extends React.Component {
   }
 
   render() {
-    return <Users 
+    return <Users
       onPageChanged={this.onPageChanged}
       users={this.props.users}
       totalCount={this.props.totalCount}
