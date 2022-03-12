@@ -21,7 +21,15 @@ export const usersAPI = {
     return api.delete(`/follow/${id}`)
       .then(response => response.data);
   }
+};
+
+export const headerAPI = {
+  login() {
+    return api.get(`//auth/me`)
+      .then(response => response.data);
+  }
 }
+
 
 
 
