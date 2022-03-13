@@ -24,22 +24,16 @@ export const usersAPI = {
 };
 
 export const headerAPI = {
-  login() {
-    return api.get(`//auth/me`)
+  me() {
+    return api.get(`/auth/me`)
       .then(response => response.data);
   }
 }
 
-
-
-
-// export const getUsers = (page = 1, count = 10) => {
-//   return axios.get(
-//     `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`,
-//     {
-//       withCredentials: true
-//     } 
-//   )
-//     .then(response => response.data);
-// }
+export const profileAPI ={
+  setUser(userId) {
+    return api.get(`/profile/${userId}`)
+      .then(response => response.data);
+  }
+}
 

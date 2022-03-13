@@ -13,6 +13,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import Hooks from './components/Hooks/Hooks';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 function App(props) {
   return (
@@ -31,6 +32,7 @@ function App(props) {
           <Route path="/news" component={News}/>
           <Route path="/settings" component={Settings}/>
           <Route path="/hooks" component={Hooks}/>
+          <Route path="/login" render={() => <Login/>}/>
         </div>
       </div>
     </div>

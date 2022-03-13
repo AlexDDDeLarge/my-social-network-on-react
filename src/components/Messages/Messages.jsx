@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router";
+import { Redirect } from "react-router-dom";
 import ChatContainer from "./Chat/ChatContainer";
 import Dialog from "./Dialog/Dialog";
 import style from "./Messages.module.css";
@@ -23,6 +24,7 @@ const Messages = (props) => {
     )
   })
 
+  // if (!props.isAuth) return <Redirect to="/login"/>;
   return (
     <div className={style.Messages}>
       <div className={style.dialogs}>
