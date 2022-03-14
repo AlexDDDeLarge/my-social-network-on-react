@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { 
   changePage, 
   getUsers,
@@ -54,6 +56,22 @@ let mapStateToProps = (state) => {
   }
 }
 
+export default compose(
+  connect(mapStateToProps, {
+    getUsers,
+    toggleFollowing,
+    changePage
+  }),
+  withAuthRedirect
+)(UsersContainer);
+
+// let RerirectContainer = withAuthRedirect(UsersContainer);
+// export default connect(mapStateToProps, {
+//   getUsers,
+//   toggleFollowing,
+//   changePage
+// })(RerirectContainer);
+
 // let mapDispatchToProps = (dispatch) => {
 //   return {
 //     follow(userId) {
@@ -86,8 +104,3 @@ let mapStateToProps = (state) => {
 //   isFetchingCompleted: isFetchingCompletedAC
 // }
 
-export default connect(mapStateToProps, {
-  getUsers,
-  toggleFollowing,
-  changePage
-})(UsersContainer);

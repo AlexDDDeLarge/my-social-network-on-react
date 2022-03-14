@@ -4,15 +4,15 @@
   padding: 5px;
   padding-left: 10px;
   padding-right: 30px;
-  border-bottom: 1px solid #013D97;
+  border-bottom: 1px solid var(--main-color);
 
   text-decoration: none;
-  color: #000000;
+  color: var(--color-text);
 }
 
 .dialog.active {
 
-  /* background-color: #013D97; */
+  /* background-color: var(--main-color); */
 
   font-weight: 500;
 }
@@ -25,7 +25,7 @@
   transform: translate(0, -50%) rotate(45deg);
   width: 6px;
   height: 6px;
-  border-top: 2.5px solid #000000;
-  border-right: 2.5px solid #000000;
-  /* background-color: #013D97; */
+  border-top: 2.5px solid var(--color-text);
+  border-right: 2.5px solid var(--color-text);
+  /* background-color: var(--main-color); */
 }

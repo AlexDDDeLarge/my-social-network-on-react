@@ -1,11 +1,11 @@
 .users {
   margin: 10px auto;
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .currentPage {
   font-weight: 700;
-  color: #3E88F3;
+  color: var(--main-background);
 }
 
 .avatar {
@@ -18,5 +18,5 @@
   width: 40%;
   margin: 0 auto;
 
-  color:#3E88F3;
+  color:var(--main-background);
 } */

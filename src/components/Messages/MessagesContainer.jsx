@@ -1,17 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import Messages from "./Messages";
 
 let mapStateToProps = (state) => {
   return {
-    messagesPage: state.messagesPage,
-    isAuth: state.auth.isAuth
+    messagesPage: state.messagesPage
   }
 };
 
-let rerirectContainer = withAuthRedirect(Messages);
+export default compose(
+  connect(mapStateToProps, null),
+  withAuthRedirect
+)(Messages);
 
-const MessagesContainer = connect(mapStateToProps, null) (rerirectContainer);
+// let RerirectContainer = withAuthRedirect(Messages);
 
-export default MessagesContainer;
+// const MessagesContainer = connect(mapStateToProps, null) (RerirectContainer);
+
+// export default MessagesContainer;

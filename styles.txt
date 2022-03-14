@@ -1,5 +1,5 @@
 header {
-  background-color: #013D97;
+  background-color: var(--main-color);
 }
 
 nav {
@@ -7,14 +7,14 @@ nav {
 }
 
 items {
-  background-color: #3E88F3;
+  background-color: var(--main-background);
 }
 
 body {
-  color: #000000;
+  color: var(--color-text);
 }
 
 text {
-  color: #000000; //main
+  color: var(--color-text); //main
   color: #212121; // a:active
 }

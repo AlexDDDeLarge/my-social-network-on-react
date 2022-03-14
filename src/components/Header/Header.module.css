@@ -1,7 +1,7 @@
 .header {
   height: 8.771929824561404vh;
   margin-bottom: 10px;
-  background-color: #013D97;
+  background-color: var(--main-color);
 }
 
 .wrapper { 
@@ -44,7 +44,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: #3E88F3;
+  background-color: var(--main-background);
 }
 
 .burgerBtn::before,
@@ -54,5 +54,5 @@
 
 .loginBlock,
 .loginBlock a {
-  color: #ffffff;
+  color: var(--color-text);
 }

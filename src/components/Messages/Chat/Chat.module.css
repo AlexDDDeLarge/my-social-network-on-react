@@ -5,7 +5,7 @@
   
   background-color: #6FA4F3;
 
-  color: #000000;
+  color: var(--color-text);
 }
 
 .chatBox {
@@ -14,7 +14,7 @@
   /* border: 1.5px solid #6FA4F3;
   border-bottom: none;
   border-radius: 5px 5px 0 0; */
-  background-color: #000000;
+  background-color: var(--color-text);
 }
 
 .inputBox {

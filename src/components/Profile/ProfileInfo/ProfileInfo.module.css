@@ -2,10 +2,10 @@
   position: relative;
   min-height: 300px;
 
-  border: 1px solid #013D97;
+  border: 1px solid var(--main-color);
   border-radius: 0 0 5px 5px;
 
-  color: #ffffff;
+  color: var(--color-text);
 } 
 
 .avatarWrapper {
@@ -15,8 +15,8 @@
   transform: translate(-50%, -50%);
   width: 160px;
   height: 160px;
-  outline: 1px solid #013D97;
-  border: 5px solid #000000;
+  outline: 1px solid var(--main-color);
+  border: 5px solid var(--color-text);
   border-radius: 25px;
   overflow: hidden;
 }
