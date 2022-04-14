@@ -1,38 +1,41 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { Route } from "react-router";
-import { Redirect } from "react-router-dom";
-import ChatContainer from "./Chat/ChatContainer";
+import Chat from "./Chat/Chat";
 import Dialog from "./Dialog/Dialog";
 import style from "./Messages.module.css";
 
 const Messages = (props) => {
-  let dialogsElements = props.messagesPage.dialogs.map(function (elem) {
-      return (
-        <Dialog
-          path={elem.userId}
-          firstName={elem.firstName}
-          lastName={elem.lastName}
-        />
-      )
-  });
-
-  let chatElements = props.messagesPage.dialogs.map(function (elem) {
-    return (
-      <Route exact path={`/messages/${elem.userId}`}>
-        <ChatContainer user={elem}/>
-      </Route>
-    )
-  })
-
-  // if (!props.isAuth) return <Redirect to="/login"/>;
+  
   return (
     <div className={style.Messages}>
       <div className={style.dialogs}>
-        {dialogsElements}
+        {props.messagesPage.dialogs.map(elem => (
+          <Dialog
+            path={elem.userId}
+            firstName={elem.firstName}
+            lastName={elem.lastName}
+          />
+        ))}
       </div>
-      {chatElements}
+      {props.messagesPage.dialogs.map(elem => (
+        <Route exact path={`/messages/${elem.userId}`}>
+          <Chat user={elem}/>
+        </Route>
+      ))}
     </div>
-  );
+  )
+}
+
+let mapStateToProps = (state) => {
+  return {
+    messagesPage: state.messagesPage
+  }
 };
 
-export default Messages;
+export default compose(
+  connect(mapStateToProps, null),
+  withAuthRedirect
+)(Messages);

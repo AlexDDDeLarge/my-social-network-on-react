@@ -43,8 +43,8 @@ function ProfileInfo (props) {
             alt="avatar"
           />
         </div>
-        <h1 className={style.fullName}>{fullName}</h1>
-        <ProfileStatus status="I become adult"/>
+        <h1 className={style.fullName}>{fullName && fullName}</h1>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         <div className={style.info}>
           <p><b>About me</b></p>
         </div>

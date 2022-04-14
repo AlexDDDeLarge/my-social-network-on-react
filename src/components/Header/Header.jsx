@@ -17,7 +17,8 @@ const Header = (props) => {
             :<NavLink to="/login">Sign in</NavLink>
           }
         </div>
-        <div className={style.burgerBtn}>
+        <div className={style.burgerBtn}
+        onClick={props.logout}>
           <span></span>
         </div>
       </div>

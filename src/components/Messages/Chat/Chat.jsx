@@ -1,45 +1,38 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import { sendMessage } from "../../../redux/messagesPageReducer";
 import style from './Chat.module.css'
 import ChatMessage from './ChatMessage/ChatMessage';
+import SendMessageForm from "./ChatMessage/SendMessageForm/SendMessageForm";
 
 const  Chat = (props) => {
-  let messages = props.user.messages.map(function (elem) {
-    return (
-      <ChatMessage
-        messageId={`${elem.dialogWithUser}${elem.messageId}`} 
-        type={elem.type} 
-        text={elem.text}
-      />
-    )
-  });
-  
-  let onUpdateText = (evt) => {
-    let text = evt.target.value;
-    props.updateText(text);
-  };
-
-  let onAddNewMessages = (evt) => {
-    let messageId = "message" + "1";
-    props.addNewMessages(messageId);
-  }; 
-
+  let onSubmit = formData => {
+    console.log(formData)
+    props.sendMessage(formData.newMessageBody, props.userId)
+  }
   
   return (
     <div id={props.userId} className={style.сhat}>
       <div className={style.chatBox}>
-        {messages}
+        {props.messages.map(elem => (
+          <ChatMessage
+            type={elem.type} 
+            text={elem.text}
+          />
+        ))}
       </div>
       <div className={style.inputBox}>
-        <textarea
-          value={props.newMessageCurrentText}
-          onChange={ onUpdateText }
-          placeholder="Enter message text"></textarea>
-        <button onClick={ onAddNewMessages }>
-          Add a new message
-        </button>
+      <SendMessageForm onSubmit={onSubmit}/>
       </div>
     </div>
   )
 }
 
-export default Chat;
+let mapStateToProps = (state, ownProps) => {
+  return {
+    userId: ownProps.user.userId,
+    messages: ownProps.user.messages
+  }
+}
+
+export default connect(mapStateToProps, {sendMessage})(Chat);

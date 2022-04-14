@@ -26,7 +26,7 @@ const ChatMessage = (props) => {
   }
 
   return (
-    <div id={props.messageId} className={className}>
+    <div className={className}>
       {props.text}
     </div>
   );

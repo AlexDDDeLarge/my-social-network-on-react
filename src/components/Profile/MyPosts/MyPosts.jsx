@@ -1,43 +1,34 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addPost } from "../../../redux/profilePageReducer";
 import style from "./MyPosts.module.css";
+import NewPostForm from "./NewPostForm/NewPostForm";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map((elem) => (
-    <Post postId={elem.id} text={elem.text} likesCount={elem.likeCount} />
-  ));
-
-  let newPost = React.createRef();
-
-  let onChangeArea = () => {
-    let text = newPost.current.value;
-    props.updateCurrentTextOfTheNewPost(text);
-  };
-
-  let onAddNewPost = () => {
-    props.addPost();
-  };
+  let onSubmit = formData => {
+    props.addPost(formData.newPostBody)
+  }
 
   return (
     <div>
       My posts
       <div className={style.addPost}>
-        <textarea
-          ref={ newPost }
-          className={style.textArea}
-          value={ props.newPostCurrentText }
-          placeholder="Text of your post"
-          onChange={ onChangeArea }
-        />
-        <button onClick={ onAddNewPost }>
-          Add a new post
-        </button>
+        <NewPostForm style={style} onSubmit={onSubmit} />
       </div>
       <div className={style.posts}>
-        { postsElements }
+        {props.posts.map(elem => (
+          <Post postId={elem.id} text={elem.text} likesCount={elem.likeCount} />
+        ))}
       </div>
     </div>
   );
 };
 
-export default MyPosts;
+let mapStateToProps = (state) => {
+  return {
+    posts: state.profilePage.posts
+  }
+}
+
+export default connect(mapStateToProps, {addPost})(MyPosts);

@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import Login from "../components/Login/Login";
 
 const api = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0",
@@ -23,10 +24,23 @@ export const usersAPI = {
   }
 };
 
-export const headerAPI = {
+export const authAPI = {
   me() {
     return api.get(`/auth/me`)
       .then(response => response.data);
+  },
+  login(email, password, rememberMe, captcha) {
+    return api.post(`/auth/login`, {
+      email,
+      password,
+      rememberMe,
+      captcha
+    })
+      .then(response => response.data)
+  },
+  logout() {
+    return api.delete(`/auth/login`)
+      .then(response => response.data)
   }
 }
 
@@ -34,6 +48,17 @@ export const profileAPI ={
   setUser(userId) {
     return api.get(`/profile/${userId}`)
       .then(response => response.data);
+  },
+  getStatus(userId) {
+    return api.get(`/profile/status/${userId}`)
+      .then(response => response.data);
+  },
+  updateStatus(status) {
+    return api.put(`profile/status`, {
+      status: status
+    })
+      .then(response => response.data);
   }
 }
 
+ 
