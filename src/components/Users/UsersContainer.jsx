@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
-import { 
-  changePage, 
-  getUsers,
+import { getCurrentPageSelector, getFollowingInProgressSelector, 
+  getIsFetchingSelector, getPageSizeSelector, 
+  getTotalPageCountSelector, getUsersSelector 
+} from "../../redux/users-selectors";
+import { changePage, requestUsers,
   toggleFollowing
 } from "../../redux/usersPageReducer";
 import Users from "./Users";
@@ -16,7 +18,7 @@ class UsersContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUsers(
+    this.props.requestUsers(
       this.props.page,
       this.props.count
     );
@@ -24,7 +26,7 @@ class UsersContainer extends React.Component {
 
   onPageChanged = (page) => {
     this.props.changePage(page);
-    this.props.getUsers(
+    this.props.requestUsers(
       page,
       this.props.count
     );
@@ -45,20 +47,31 @@ class UsersContainer extends React.Component {
   }
 } 
 
+// let mapStateToProps = (state) => {
+//   return {
+//     users: state.usersPage.users,
+//     totalCount: state.usersPage.totalCount,
+//     count: state.usersPage.count,
+//     page: state.usersPage.page,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress
+//   }
+// }
+
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    totalCount: state.usersPage.totalCount,
-    count: state.usersPage.count,
-    page: state.usersPage.page,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress
+    users: getUsersSelector(state),
+    totalCount: getTotalPageCountSelector(state),
+    count: getPageSizeSelector(state),
+    page: getCurrentPageSelector(state),
+    isFetching: getIsFetchingSelector(state),
+    followingInProgress: getFollowingInProgressSelector(state)
   }
 }
 
 export default compose(
   connect(mapStateToProps, {
-    getUsers,
+    requestUsers,
     toggleFollowing,
     changePage
   }),

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { sendMessage } from "../../../redux/messagesPageReducer";
 import style from './Chat.module.css'
 import ChatMessage from './ChatMessage/ChatMessage';
-import SendMessageForm from "./ChatMessage/SendMessageForm/SendMessageForm";
+import SendMessageForm from "./SendMessageForm/SendMessageForm";
 
 const  Chat = (props) => {
   let onSubmit = formData => {

@@ -1,0 +1,13 @@
+/* .form-control {
+
+} */
+
+.formСontrol.error input,
+.formСontrol.error textarea {
+  border: 1px solid red;
+}
+
+.errorText {
+  font-size: 0.8rem;
+  color: red;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { reduxForm } from 'redux-form';
+import { maxPostBodyLength, minPostBodyLength, required } from '../../../../utils/validators/validators';
+import { TextArea } from '../../../FormControls/FormControls';
 
 let NewPostForm = props => {
   return (
@@ -9,7 +11,8 @@ let NewPostForm = props => {
         name={"newPostBody"}
         placeholder={"Text of your post"}
         className={props.style.textArea}
-        component={"textarea"}
+        component={TextArea}
+        validate={[required, maxPostBodyLength, minPostBodyLength]}
       />
       <div>
         <button>Add a new post</button>

@@ -79,7 +79,7 @@ export const changePage = (pageNumber) => ({type: CHANGE_PAGE, pageNumber});
 export const isFetchingCompleted = (isFetching) => ({type: IS_FETCHING_COMPLETED, isFetching});
 export const toogleIsFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
 
-export const getUsers = (page, count) => dispatch => {
+export const requestUsers = (page, count) => dispatch => {
   dispatch(isFetchingCompleted(true));
     usersAPI.getUsers(
       page,

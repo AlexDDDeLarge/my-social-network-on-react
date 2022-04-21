@@ -17,10 +17,10 @@ const Header = (props) => {
             :<NavLink to="/login">Sign in</NavLink>
           }
         </div>
-        <div className={style.burgerBtn}
-        onClick={props.logout}>
+        <div className={style.burgerBtn}>
           <span></span>
         </div>
+        { props.isAuth && <div className={style.logOutBtn} onClick={props.logout}></div> }
       </div>
     </header>
   )

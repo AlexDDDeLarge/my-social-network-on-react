@@ -4,27 +4,35 @@ import { Redirect } from "react-router-dom";
 import { Field } from "redux-form";
 import { reduxForm } from "redux-form";
 import { signIn } from "../../redux/auth-reducer";
+import { required } from "../../utils/validators/validators";
+import { CustonInput } from "../FormControls/FormControls";
+import styles from "./Login.module.css"
 
 let LoginForm = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field placeholder={"Login"} name={"login"} 
-          component={"input"} type={"text"}
+          component={CustonInput} type={"text"}
+          validate={[required]}
         />
       </div>
       <div>
       <Field placeholder={"Password"} name={"password"} 
-        component={"input"} type={"password"}
+        component={CustonInput} type={"password"}
+        validate={[required]}
       />
       </div>
       <div>
         <label>
           <Field name={"rememberMe"}
-            component={"input"} type={"checkbox"}
+            component={CustonInput} type={"checkbox"}
           /> Remember me
         </label>
       </div>
+      { props.error && <p className={styles.formGeneralError}>
+        {props.error}
+      </p> }
       <div>
         <button>Login</button>
       </div>
@@ -34,14 +42,14 @@ let LoginForm = props => {
 
 let LoginReduxForm = reduxForm({form: "login"})(LoginForm);
 
-let Login = (props) => {
+let Login = props => {
   let onSubmit = formData => {
-    console.log(formData);
     let {login, password, rememberMe} = formData;
     props.signIn(login, password, rememberMe);
   }
 
   if (props.isAuth) return <Redirect to="/profile" />
+  // if (props.isAuth) window.history.back();
 
   return (
     <div>
@@ -51,7 +59,7 @@ let Login = (props) => {
   )
 }
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = state => ({
   isAuth: state.auth.isAuth
 });
 

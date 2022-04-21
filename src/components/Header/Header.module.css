@@ -56,3 +56,34 @@
 .loginBlock a {
   color: var(--color-text);
 }
+
+/* LOGOUT BTN */
+.logOutBtn {
+  position: relative;
+  height: 24px;
+  width: 24px;
+  margin-right: 15px;
+  margin-left: 0;
+  cursor: pointer;
+}
+
+.logOutBtn::before,
+.logOutBtn::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  transform-origin: center;
+  background-color: var(--main-background);
+}
+
+.logOutBtn::before {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.logOutBtn::after {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
