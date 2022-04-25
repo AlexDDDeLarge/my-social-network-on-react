@@ -4,22 +4,18 @@ export const getUsersSelector = state => {
 
 export const getTotalPageCountSelector = state => {
   return state.usersPage.totalCount
-
 }
 
 export const getPageSizeSelector = state => {
   return state.usersPage.count
-
 }
 
 export const getCurrentPageSelector = state => {
   return state.usersPage.page
-
 }
 
 export const getIsFetchingSelector = state => {
   return state.usersPage.isFetching
-
 }
 
 export const getFollowingInProgressSelector = state => {
