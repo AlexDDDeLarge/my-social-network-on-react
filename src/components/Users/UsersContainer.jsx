@@ -4,7 +4,7 @@ import { compose } from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { getCurrentPageSelector, getFollowingInProgressSelector, 
   getIsFetchingSelector, getPageSizeSelector, 
-  getTotalPageCountSelector, getUsersSelector 
+  getTotalPageCountSelector, getUsersSelector, getUsersSelectorSuper 
 } from "../../redux/users-selectors";
 import { changePage, requestUsers,
   toggleFollowing
@@ -33,6 +33,7 @@ class UsersContainer extends React.Component {
   }
 
   render() {
+    console.log("Render")
     return <Users
       onPageChanged={this.onPageChanged}
       users={this.props.users}
@@ -59,8 +60,10 @@ class UsersContainer extends React.Component {
 // }
 
 let mapStateToProps = (state) => {
+  console.log("mStP")
   return {
-    users: getUsersSelector(state),
+    // users: getUsersSelector(state),
+    users: getUsersSelectorSuper(state),
     totalCount: getTotalPageCountSelector(state),
     count: getPageSizeSelector(state),
     page: getCurrentPageSelector(state),
