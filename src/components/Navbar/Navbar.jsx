@@ -4,6 +4,7 @@ import style from './Navbar.module.css'
 import NavItem from './NavItem/NavItem';
 
 const Navbar = (props) => {
+  console.log("render")
   return (
     <nav className={style.nav}>
       <NavItem 

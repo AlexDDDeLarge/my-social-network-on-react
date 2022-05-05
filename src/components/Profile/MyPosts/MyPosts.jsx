@@ -5,7 +5,7 @@ import style from "./MyPosts.module.css";
 import NewPostForm from "./NewPostForm/NewPostForm";
 import Post from "./Post/Post";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo( props => {
   let onSubmit = formData => {
     props.addPost(formData.newPostBody)
   }
@@ -23,7 +23,7 @@ const MyPosts = (props) => {
       </div>
     </div>
   );
-};
+});
 
 let mapStateToProps = (state) => {
   return {

@@ -1,8 +1,9 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET-USER-PROFILE";
-const SET_STATUS = "SET-STATUS";
+const ADD_POST = "react-network/profile/ADD-POST";
+const SET_USER_PROFILE = "react-network/profile/SET-USER-PROFILE";
+const SET_STATUS = "react-network/profile/SET-STATUS";
+const DELETE_POST = "react-network/profile/DELETE-POST";
 
 let initialState = {
   posts: [
@@ -33,30 +34,34 @@ const profilePageReducer = (state = initialState, action) => {
         ...state,
         status: action.status
       }
+    case DELETE_POST: 
+      return {
+        ...state,
+        posts: state.posts.filter(el => el.id !== action.id)
+      }
     default: 
       return state;
   }
 }
 
-export const addPost = (newPostBody) => ({type: ADD_POST, newPostBody});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const addPost = newPostBody => ({type: ADD_POST, newPostBody});
+export const setUserProfile = profile => ({type: SET_USER_PROFILE, profile});
 export const setStatus = status => ({type: SET_STATUS, status});
+export const deletePost = id => ({type: DELETE_POST, id})
 
-export const setUser = (userId) => dispatch => { 
-  profileAPI.setUser(userId)
-  .then(data => dispatch(setUserProfile(data)));
+export const setUser = (userId) => async dispatch => { 
+  let data = await profileAPI.setUser(userId);
+  dispatch(setUserProfile(data));
 }
 
-export const getStatus = (userId) => dispatch => { 
-  profileAPI.getStatus(userId)
-   .then(response => dispatch(setStatus(response)))
+export const getStatus = (userId) => async dispatch => { 
+  let response = await profileAPI.getStatus(userId);
+  dispatch(setStatus(response));
 }
 
-export const updateStatus = status => dispatch => {
-  profileAPI.updateStatus(status)
-    .then(response => {
-      if (response.resultCode === 0) dispatch(setStatus(status));
-    })
+export const updateStatus = status => async dispatch => {
+  let response = await profileAPI.updateStatus(status);
+  if (response.resultCode === 0) dispatch(setStatus(status));
 }
 
 export default profilePageReducer;

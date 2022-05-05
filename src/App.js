@@ -2,9 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Svgs from './components/Svgs/Svgs';
-// import Header from './components/Header/Header.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
-// import Profile from './components/Profile/Profile.jsx';
 import Friends from './components/Friends/Friends';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
@@ -22,7 +20,6 @@ import { withRouter } from 'react-router-dom';
 
 class App extends React.Component {
   componentDidMount() {
-    // this.props.loginThunk();
     this.props.initializeApp();
   }
 
