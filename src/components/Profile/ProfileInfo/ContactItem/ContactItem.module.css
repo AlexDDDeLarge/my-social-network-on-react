@@ -1,0 +1,28 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+
+  margin-bottom: 15px;
+}
+
+.title {
+  display: block;
+
+  margin-right: 15px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: var(--color-description);
+}
+
+.link {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}

@@ -22,14 +22,16 @@ let initialState = {
 const usersPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
+      console.log("FOLLOW")
       return {
         ...state,
-        users: updateObjectArray(state.users, action.id, id, {followed: true})
+        users: updateObjectArray(state.users, action.userId, "id", {followed: true})
       };
     case UNFOLLOW:
+      console.log("UNFOLLOW")
       return {
         ...state,
-        users: updateObjectArray(state.users, action.id, id, {followed: false})
+        users: updateObjectArray(state.users, action.userId, "id", {followed: false})
       };
     // case FOLLOW:
     //   return {
@@ -114,7 +116,7 @@ export const toggleFollowing = (id, willBeFollow) => async (dispatch) => {
   let data = await (willBeFollow ? usersAPI.follow(id) : usersAPI.unfollow(id));
   if (data.resultCode == 0) {
     willBeFollow ? dispatch(follow(id)) : dispatch(unfollow(id));
-  }
+  } 
   dispatch(toogleIsFollowingProgress(false, id));
 };
 

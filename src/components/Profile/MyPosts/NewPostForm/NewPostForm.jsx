@@ -6,16 +6,19 @@ import { TextArea } from '../../../FormControls/FormControls';
 
 let NewPostForm = props => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form
+      onSubmit={props.handleSubmit}
+      className={props.style.form}
+    >
       <Field
         name={"newPostBody"}
-        placeholder={"Text of your post"}
+        placeholder={"Add a new post"}
         className={props.style.textArea}
         component={TextArea}
         validate={[required, maxPostBodyLength, minPostBodyLength]}
       />
       <div>
-        <button>Add a new post</button>
+        <button className={props.style.submitButton}>Add a new post</button>
       </div>
     </form>
   )

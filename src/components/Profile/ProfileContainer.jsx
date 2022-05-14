@@ -52,9 +52,3 @@ export default compose(
   withRouter
   // withAuthRedirect
 )(ProfileContainer);
-
-// let RerirectContainer = withAuthRedirect(ProfileContainer);
-
-// let withUrlDataContainerComponent = withRouter(RerirectContainer);
-
-// export default connect(mapStateToProps, {setUser})(withUrlDataContainerComponent);

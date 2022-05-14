@@ -6,7 +6,9 @@
   /* --main-background: #E5E5E5; */
   --main-background: #F5F5F5;
   --color-text: #0D0D0D;
+  --color-description: #8A8A8A;
   --main-color: #74BF04;
+  --border-color: #DADADA;
 }
 
 * {
@@ -34,7 +36,7 @@ a {
   margin: 0 auto;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto;
-  gap: 10px;
+  gap: 15px;
   align-items: start;
 
   grid-template-areas: 
@@ -69,5 +71,5 @@ a {
 
 .content {
   grid-area: c;
-  border-radius: 5px;
+  padding: 0 15px;
 }

@@ -1,23 +1,29 @@
 .mainWrapper {
   position: relative;
-  min-height: 300px;
+  min-height: 105px;
 
-  border: 1px solid var(--main-color);
-  border-radius: 0 0 5px 5px;
+  padding-left: 3.608%;
+  padding-top: 90px;
+  padding-bottom: 15px;
+
+  box-shadow: 0px 2px 6px rgba(229, 229, 229, 0.46);
+  border-radius: 3px;
 
   color: var(--color-text);
 } 
 
-.avatarWrapper {
+.nameContainer {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
-  outline: 1px solid var(--main-color);
-  border: 5px solid var(--color-text);
-  border-radius: 25px;
+  top: -60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.avatarWrapper {
+  width: 150px;
+  height: 150px;
   overflow: hidden;
 }
 
@@ -28,9 +34,13 @@
 }
 
 .fullName {
-  margin-top: 100px;
+  margin-left: 23px;
 
   text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--main-color);
 }
 /* 
 .info {

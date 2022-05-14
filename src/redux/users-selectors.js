@@ -30,9 +30,9 @@ export const getUsersSelector = state => {
   return state.usersPage.users
 }
 
-export const getUsersSelectorSuper = createSelector(getUsersSelector, (users) => {
-  return users.filter(el => true)
-});
+// export const getUsersSelectorSuper = createSelector(getUsersSelector, (users) => {
+//   return users.filter(el => true)
+// });
 
 export const getTotalPageCountSelector = state => {
   return state.usersPage.totalCount

@@ -5,33 +5,19 @@ import { Field } from "redux-form";
 import { reduxForm } from "redux-form";
 import { signIn } from "../../redux/auth-reducer";
 import { required } from "../../utils/validators/validators";
-import { CustonInput } from "../FormControls/FormControls";
+import { CreateField, CustonInput } from "../FormControls/FormControls";
 import styles from "./Login.module.css"
 
-let LoginForm = props => {
+let LoginForm = ({handleSubmit, error}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <Field placeholder={"Login"} name={"login"} 
-          component={CustonInput} type={"text"}
-          validate={[required]}
-        />
-      </div>
-      <div>
-      <Field placeholder={"Password"} name={"password"} 
-        component={CustonInput} type={"password"}
-        validate={[required]}
-      />
-      </div>
-      <div>
-        <label>
-          <Field name={"rememberMe"}
-            component={CustonInput} type={"checkbox"}
-          /> Remember me
-        </label>
-      </div>
-      { props.error && <p className={styles.formGeneralError}>
-        {props.error}
+    <form onSubmit={handleSubmit}>
+      {CreateField("Login", "login", CustonInput, "text", [required])}
+      {CreateField("Password", "password", CustonInput, "password", [required])}
+      <label>
+          {CreateField(null, "rememberMe", CustonInput, "checkbox", null, "Remember me")} 
+      </label>
+      { error && <p className={styles.formGeneralError}>
+        {error}
       </p> }
       <div>
         <button>Login</button>

@@ -48,22 +48,11 @@ class UsersContainer extends React.Component {
   }
 } 
 
-// let mapStateToProps = (state) => {
-//   return {
-//     users: state.usersPage.users,
-//     totalCount: state.usersPage.totalCount,
-//     count: state.usersPage.count,
-//     page: state.usersPage.page,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress
-//   }
-// }
-
 let mapStateToProps = (state) => {
   console.log("mStP")
   return {
-    // users: getUsersSelector(state),
-    users: getUsersSelectorSuper(state),
+    users: getUsersSelector(state),
+    // users: getUsersSelectorSuper(state),
     totalCount: getTotalPageCountSelector(state),
     count: getPageSizeSelector(state),
     page: getCurrentPageSelector(state),
@@ -80,43 +69,3 @@ export default compose(
   }),
   withAuthRedirect
 )(UsersContainer);
-
-// let RerirectContainer = withAuthRedirect(UsersContainer);
-// export default connect(mapStateToProps, {
-//   getUsers,
-//   toggleFollowing,
-//   changePage
-// })(RerirectContainer);
-
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     follow(userId) {
-//       dispatch( followAC(userId) );
-//     },
-//     unfollow(userId) {
-//       dispatch( unfollowAC(userId) );
-//     },
-//     setUsers(users) {
-//       dispatch( setUsersAC(users) );
-//     },
-//     setTotalCount(totalCount) {
-//       dispatch( setTotalCountAC(totalCount) );
-//     },
-//     changePage(pageNumber) {
-//       dispatch( changePageAC(pageNumber) );
-//     },
-//     isFetchingCompleted(isFetching) {
-//       dispatch( isFetchingCompletedAC(isFetching) );
-//     }
-//   }
-// }
-
-// {
-//   follow: followAC,
-//   unfollow: unfollowAC,
-//   setUsers: setUsersAC,
-//   setTotalCount: setTotalCountAC,
-//   changePage: changePageAC,
-//   isFetchingCompleted: isFetchingCompletedAC
-// }
-

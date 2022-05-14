@@ -1,0 +1,20 @@
+.container {
+  margin: 0 15px 15px 15px;
+  padding: 5px;
+  box-shadow: 0px 2px 6px rgba(229, 229, 229, 0.46);
+  border-radius: 3px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-description);
+}
+
+.status {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--color-text);
+}
