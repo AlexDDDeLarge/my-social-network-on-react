@@ -11,11 +11,13 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import Messages from './components/Messages/Messages';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import store from "./redux/reduxStore";
 
 const App = props => {
   useEffect(() => {
@@ -48,10 +50,24 @@ let mapStateToProps = state => ({
   initialized: state.app.initialized
 })
 
-export default compose(
+let AppContainer = compose(
   withRouter,
   connect(mapStateToProps, {initializeApp})
 )(App);
+
+let GeneralApp = props => {
+  return (
+    <React.StrictMode>
+      <BrowserRouter> 
+        <Provider store={store}>
+          <AppContainer/>
+        </Provider>
+      </BrowserRouter>
+    </React.StrictMode> 
+  )
+}
+
+export default GeneralApp;
 
 // class App extends React.Component {
 //   componentDidMount() {

@@ -4,7 +4,7 @@ import { compose } from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { getCurrentPageSelector, getFollowingInProgressSelector, 
   getIsFetchingSelector, getPageSizeSelector, 
-  getTotalPageCountSelector, getUsersSelector, getUsersSelectorSuper 
+  getTotalPageCountSelector, getUsersPortionSize, getUsersSelector, getUsersSelectorSuper 
 } from "../../redux/users-selectors";
 import { changePage, requestUsers,
   toggleFollowing
@@ -44,6 +44,7 @@ class UsersContainer extends React.Component {
       isFetching={this.props.isFetching}
       followingInProgress={this.props.followingInProgress}
       toggleFollowing={this.props.toggleFollowing}
+      portionSize={this.props.portionSize}
     />
   }
 } 
@@ -57,7 +58,8 @@ let mapStateToProps = (state) => {
     count: getPageSizeSelector(state),
     page: getCurrentPageSelector(state),
     isFetching: getIsFetchingSelector(state),
-    followingInProgress: getFollowingInProgressSelector(state)
+    followingInProgress: getFollowingInProgressSelector(state),
+    portionSize: getUsersPortionSize(state)
   }
 }
 

@@ -4,11 +4,19 @@ import Preloader from "../common/Preloader/Preloader";
 import Paginator from "../common/Preloader/Paginator/Paginator";
 import User from "./User";
 
-const Users = ({page, onPageChanged, totalCount, count, users, followingInProgress, toggleFollowing,  ...props}) => {
+const Users = ({page, 
+  onPageChanged, 
+  totalCount, 
+  count, 
+  users, 
+  followingInProgress, 
+  toggleFollowing, 
+  portionSize,  
+  ...props}) => {
   return (
     <div className={styles.users}>
-      <Paginator page={props.page} onPageChanged={onPageChanged} 
-        totalCount={totalCount} count={count} />
+      <Paginator page={page} onPageChanged={onPageChanged} 
+        totalCount={totalCount} count={count} portionSize={portionSize}/>
 
       {props.isFetching == true && <Preloader/>}
       
