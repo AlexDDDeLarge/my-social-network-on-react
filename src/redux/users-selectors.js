@@ -39,7 +39,7 @@ export const getTotalPageCountSelector = state => {
 }
 
 export const getPageSizeSelector = state => {
-  return state.usersPage.count
+  return state.usersPage.pageSize
 }
 
 export const getCurrentPageSelector = state => {
