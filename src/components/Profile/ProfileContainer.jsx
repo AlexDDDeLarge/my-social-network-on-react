@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
+// import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { getStatus, setUser, updateStatus } from "../../redux/profilePageReducer";
 import Profile from "./Profile";
 

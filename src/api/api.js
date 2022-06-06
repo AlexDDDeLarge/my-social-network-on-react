@@ -1,5 +1,4 @@
 import * as axios from "axios";
-import Login from "../components/Login/Login";
 
 const api = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0",
@@ -21,6 +20,14 @@ export const usersAPI = {
   unfollow(id) {
     return api.delete(`/follow/${id}`)
       .then(response => response.data);
+  },
+  searchUser(userName, count = 10, page = 1) {
+    return api.get(`/users?count=${count}&page=${page}&term=${userName}`)
+      .then(response => response.data)
+  },
+  getFriends(page = 1, count = 10) {
+    return api.get(`/users?page=${page}&count=${count}&friend=${true}`)
+      .then(response => response.data)
   }
 };
 

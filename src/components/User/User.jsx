@@ -4,6 +4,7 @@ import userDefaultPic from "../../assets/images/user.jpg";
 import { NavLink } from "react-router-dom";
 
 const User = ({user, followingInProgress, toggleFollowing}) => {
+  debugger
   return (
     <div className={styles.item} key={user.id}>
       <NavLink to={`/profile/${user.id}`}>
@@ -17,19 +18,18 @@ const User = ({user, followingInProgress, toggleFollowing}) => {
         />
       </NavLink>
       <br/>
+      {user.followed && <p>Your friend</p>}
       {
         user.followed ? 
           <button 
             disabled={followingInProgress.some(id => id === user.id)} 
             onClick={() => toggleFollowing(user.id, false)}
-          >
-            Unfollow
+          >Unfollow
           </button> 
           : <button 
             disabled={followingInProgress.some(id => id === user.id)} 
             onClick={() => toggleFollowing(user.id, true)}
-          >
-            Follow
+          >Follow
           </button> 
       }
       <p>{user.name}</p>

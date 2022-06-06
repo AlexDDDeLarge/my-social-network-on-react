@@ -6,7 +6,8 @@ import { getCurrentPageSelector, getFollowingInProgressSelector,
   getIsFetchingSelector, getPageSizeSelector, 
   getTotalPageCountSelector, getUsersPortionSize, getUsersSelector, getUsersSelectorSuper 
 } from "../../redux/users-selectors";
-import { changePage, requestUsers,
+import { changePage, requestSearchUser, requestUsers,
+  setFirstPage,
   toggleFollowing
 } from "../../redux/usersPageReducer";
 import Users from "./Users";
@@ -22,6 +23,10 @@ class UsersContainer extends React.Component {
       this.props.page,
       this.props.count
     );
+  }
+
+  componentWillUnmount() {
+    this.props.setFirstPage();
   }
 
   onPageChanged = (page) => {
@@ -45,6 +50,7 @@ class UsersContainer extends React.Component {
       followingInProgress={this.props.followingInProgress}
       toggleFollowing={this.props.toggleFollowing}
       portionSize={this.props.portionSize}
+      requestSearchUser={this.props.requestSearchUser}
     />
   }
 } 
@@ -67,7 +73,9 @@ export default compose(
   connect(mapStateToProps, {
     requestUsers,
     toggleFollowing,
-    changePage
+    changePage,
+    requestSearchUser,
+    setFirstPage
   }),
   withAuthRedirect
 )(UsersContainer);

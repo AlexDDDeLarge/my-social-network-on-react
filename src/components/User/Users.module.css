@@ -1,0 +1,17 @@
+.users {
+  margin: 10px auto;
+  color: var(--color-text);
+}
+
+.avatar {
+  width: 75px;
+  height: auto;
+  border-radius: 50%;
+}
+
+/* .preloader {
+  width: 40%;
+  margin: 0 auto;
+
+  color:var(--main-background);
+} */

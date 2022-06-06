@@ -9,9 +9,13 @@ const CHANGE_PAGE = "react-network/users/CHANGE-PAGE";
 const IS_FETCHING_COMPLETED = "react-network/users/IS-FETCHING-COMPLETED";
 const TOGGLE_IS_FOLLOWING_PROGRESS =
   "react-network/users/TOGGLE_IS_FOLLOWING_PROGRESS";
+// const SERCH_USER = "react-network/users/SERCH-USER";
+// const SET_FRIENDS = "react-network/users/SET-FRIENDS";
+const SET_FIRST_PAGE = "react-network/users/SET-FIRST-PAGE";
 
 let initialState = {
   users: [],
+  friends: [],
   totalCount: 0,
   pageSize: 15,
   page: 1,
@@ -23,37 +27,15 @@ let initialState = {
 const usersPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
-      console.log("FOLLOW")
       return {
         ...state,
         users: updateObjectArray(state.users, action.userId, "id", {followed: true})
       };
     case UNFOLLOW:
-      console.log("UNFOLLOW")
       return {
         ...state,
         users: updateObjectArray(state.users, action.userId, "id", {followed: false})
       };
-    // case FOLLOW:
-    //   return {
-    //     ...state,
-    //     users: state.users.map((user) => {
-    //       if (user.id === action.userId) {
-    //         return { ...user, followed: true };
-    //       }
-    //       return user;
-    //     }),
-    //   };
-    // case UNFOLLOW:
-    //   return {
-    //     ...state,
-    //     users: state.users.map((user) => {
-    //       if (user.id === action.userId) {
-    //         return { ...user, followed: false };
-    //       }
-    //       return user;
-    //     }),
-    //   };
     case SET_USERS:
       return {
         ...state,
@@ -81,6 +63,11 @@ const usersPageReducer = (state = initialState, action) => {
           ? [...state.followingInProgress, action.userId]
           : state.followingInProgress.filter((id) => id != action.userId),
       };
+    case SET_FIRST_PAGE:
+      return {
+        ...state,
+        page: 1
+      }
     default:
       return state;
   }
@@ -103,7 +90,14 @@ export const toogleIsFollowingProgress = (isFetching, userId) => ({
   isFetching,
   userId,
 });
+export const setFirstPage = () => ({type: SET_FIRST_PAGE});
 
+export const requestSearchUser = (userName, count, page) => async dispatch => {
+  dispatch(isFetchingCompleted(true));
+  let data = await usersAPI.searchUser(userName, count, page);
+  dispatch(setUsers(data.items));
+  dispatch(isFetchingCompleted(false));
+}
 export const requestUsers = (page, count) => async (dispatch) => {
   dispatch(isFetchingCompleted(true));
   let data = await usersAPI.getUsers(page, count);
@@ -111,7 +105,6 @@ export const requestUsers = (page, count) => async (dispatch) => {
   dispatch(setTotalCount(data.totalCount));
   dispatch(isFetchingCompleted(false));
 };
-
 export const toggleFollowing = (id, willBeFollow) => async (dispatch) => {
   dispatch(toogleIsFollowingProgress(true, id));
   let data = await (willBeFollow ? usersAPI.follow(id) : usersAPI.unfollow(id));

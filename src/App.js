@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Svgs from './components/Svgs/Svgs';
 import Navbar from './components/Navbar/Navbar.jsx';
-import Friends from './components/Friends/Friends';
-import News from './components/News/News';
-import Settings from './components/Settings/Settings';
-import UsersContainer from './components/Users/UsersContainer';
+// import Friends from './components/Friends/Friends';
+// import News from './components/News/News';
+// import Settings from './components/Settings/Settings';
+// import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
-import Messages from './components/Messages/Messages';
+// import Login from './components/Login/Login';
+// import Messages from './components/Messages/Messages';
 import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
@@ -18,6 +18,12 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import store from "./redux/reduxStore";
+
+const Login = lazy(() => import('./components/Login/Login'));
+// const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
+const Messages = lazy(() => import('./components/Messages/Messages'));
+const Friends = lazy(() => import('./components/Friends/Friends'));
 
 const App = props => {
   useEffect(() => {
@@ -33,13 +39,20 @@ const App = props => {
       <div className="app-wrapper">
         <Navbar />
         <div className="content">
+        <Suspense fallback={<Preloader/>} >
           <Route path="/login" render={() => <Login/>} />
+          <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
+          <Route path="/messages" render={() => <Messages/>} />
+          <Route path="/users" render={() => <UsersContainer/>} />
+          <Route path="/friends" render={() => <Friends/>} />
+        </Suspense>
+          {/* <Route path="/login" render={() => <Login/>} />
           <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
           <Route path="/friends" component={Friends} />
           <Route path="/messages" render={() => <Messages/>} />
           <Route path="/users" render={() => <UsersContainer/>} />
           <Route path="/news" component={News} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/settings" component={Settings} /> */}
         </div>
       </div>
     </div>

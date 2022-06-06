@@ -6,6 +6,7 @@ import usersPageReducer from "./usersPageReducer";
 import thunk from "redux-thunk";
 import { reducer as formReducer } from 'redux-form';
 import appReducer from "./app-reducer";
+import friendsReducer from "./friendsReducer";
 
 let reducers = combineReducers({
   profilePage: profilePageReducer,
@@ -13,7 +14,8 @@ let reducers = combineReducers({
   usersPage: usersPageReducer,
   auth: authReducer,
   form: formReducer,
-  app: appReducer
+  app: appReducer,
+  friends: friendsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //redux dev tools
