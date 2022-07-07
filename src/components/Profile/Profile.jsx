@@ -7,7 +7,12 @@ const Profile = (props) => {
   return (
     <div>
       <div className={ style.content__bg }></div>
-      <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+      <ProfileInfo isOwner={props.isOwner} 
+        profile={props.profile} 
+        status={props.status} 
+        updateStatus={props.updateStatus}
+        setNewAvatar={props.setNewAvatar}
+        isFetching={props.isFetching} />
       <MyPosts/>
     </div>
   )

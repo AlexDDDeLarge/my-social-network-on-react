@@ -6,47 +6,44 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import ContactItem from "./ContactItem/ContactItem";
 
 function ProfileInfo (props) {
+  debugger
   if (!props.profile) {
-    return <Preloader/>
+    return <Preloader />
   } 
   
   let  {
-        profile,
-        profile: {
-          aboutMe,
-          contacts,
-          contacts: {
-            facebook,
-            website,
-            vk,
-            twitter,
-            instagram,
-            youtube,
-            github,
-            mainLink
-          },
-          lookingForAJob,
-          lookingForAJobDescription,
-          fullName,
-          userId,
-          photos
-        }
-      } = props;
+      isOwner, setNewAvatar, isFetching,
+      profile, profile: {
+        aboutMe, contacts,
+        contacts: {
+          facebook, website, vk,
+          twitter, instagram, youtube,
+          github, mainLink
+        },
+        lookingForAJob, lookingForAJobDescription, 
+        fullName, userId
+      }
+    } = props;
+
+    let onAvatacrSelected = (e) => {
+      if (e.target.files.length) setNewAvatar(e.target.files[0]);
+    }
 
     return (
       <div className={style.mainWrapper}>
         <div className={style.nameContainer}>
           <div className={style.avatarWrapper}>
-            <img 
+            {isFetching ? <Preloader /> : <img 
               className={style.avatar}
               src={
-                (photos.large) ? photos.large : defaultImage
+                (profile.photos.large) ? profile.photos.large : defaultImage
               }
               alt="avatar"
-            />
+            />}
           </div>
           <h1 className={style.fullName}>{fullName && fullName}</h1>
         </div>
+        {!isOwner && <input type='file' onChange={onAvatacrSelected}/>}
         <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         <div className={style.info}>
           {aboutMe && <div><span>About me:</span><p>{aboutMe}</p></div>}

@@ -22,9 +22,14 @@
 }
 
 .avatarWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 150px;
   overflow: hidden;
+  background-color: var(--color-description);
 }
 
 .avatar {

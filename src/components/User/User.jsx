@@ -4,7 +4,6 @@ import userDefaultPic from "../../assets/images/user.jpg";
 import { NavLink } from "react-router-dom";
 
 const User = ({user, followingInProgress, toggleFollowing}) => {
-  debugger
   return (
     <div className={styles.item} key={user.id}>
       <NavLink to={`/profile/${user.id}`}>
