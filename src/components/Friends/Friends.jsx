@@ -22,7 +22,7 @@ const Friends = ({
   useEffect(() => {
     requestFriends(page, count)
     return setFirstPage();
-  }, [totalCount]);
+  }, [count]);
 
   let onPageChenged = currentPage => {
     changePage(currentPage);
@@ -31,7 +31,7 @@ const Friends = ({
       count
     )
   }
-
+  debugger
   return (
     <div>
       <Paginator page={page} count={count} 

@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import Svgs from './components/Svgs/Svgs';
 import Navbar from './components/Navbar/Navbar.jsx';
 // import Friends from './components/Friends/Friends';
@@ -18,6 +18,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import store from "./redux/reduxStore";
+import EditProfile from './components/EditProfile/EditProfile';
 
 const Login = lazy(() => import('./components/Login/Login'));
 // const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
@@ -39,20 +40,15 @@ const App = props => {
       <div className="app-wrapper">
         <Navbar />
         <div className="content">
-        <Suspense fallback={<Preloader/>} >
-          <Route path="/login" render={() => <Login/>} />
-          <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
-          <Route path="/messages" render={() => <Messages/>} />
-          <Route path="/users" render={() => <UsersContainer/>} />
-          <Route path="/friends" render={() => <Friends/>} />
-        </Suspense>
-          {/* <Route path="/login" render={() => <Login/>} />
-          <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
-          <Route path="/friends" component={Friends} />
-          <Route path="/messages" render={() => <Messages/>} />
-          <Route path="/users" render={() => <UsersContainer/>} />
-          <Route path="/news" component={News} />
-          <Route path="/settings" component={Settings} /> */}
+          <Suspense fallback={<Preloader/>} >
+            <Route path="/" render={() => <Redirect to="/profile" />} />
+            <Route path="/login" render={() => <Login/>} />
+            <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
+            <Route path="/messages" render={() => <Messages/>} />
+            <Route path="/users" render={() => <UsersContainer/>} />
+            <Route path="/friends" render={() => <Friends/>} />
+            <Route path="/editProfile" render={() => <EditProfile/>} />
+          </Suspense>
         </div>
       </div>
     </div>
@@ -81,66 +77,3 @@ let GeneralApp = props => {
 }
 
 export default GeneralApp;
-
-// class App extends React.Component {
-//   componentDidMount() {
-//     this.props.initializeApp();
-//   }
-
-//   render() {
-//     if (!this.props.initialized) return <Preloader/>
-
-//     return (
-//       <div>
-//         <Svgs/>
-//         <HeaderContainer />
-//         <div className="app-wrapper">
-//           <Navbar />
-//           <div className="content">
-//             <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
-//             <Route path="/friends" component={Friends} />
-//             <Route path="/messages" render={() => <Messages/>} />
-//             <Route path="/users" render={() => <UsersContainer/>} />
-//             <Route path="/news" component={News} />
-//             <Route path="/settings" component={Settings} />
-//             <Route path="/hooks" component={Hooks} />
-//             <Route path="/login" render={() => <Login/>} />
-//           </div>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-// let mapStateToProps = state => ({
-//   initialized: state.app.initialized
-// })
-
-// export default compose(
-//   withRouter,
-//   connect(mapStateToProps, {initializeApp})
-// )(App);
-
-// function App (props) {
-//   return (
-//     <div>
-//       <Svgs/>
-//       <HeaderContainer />
-//       <div className="app-wrapper">
-//         <Navbar />
-//         <div className="content">
-//           <Route path="/profile/:userId?" render={() => <ProfileContainer/>} />
-//           <Route path="/friends" component={Friends} />
-//           <Route path="/messages" render={() => <Messages/>} />
-//           <Route path="/users" render={() => <UsersContainer/>} />
-//           <Route path="/news" component={News} />
-//           <Route path="/settings" component={Settings} />
-//           <Route path="/hooks" component={Hooks} />
-//           <Route path="/login" render={() => <Login/>} />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;

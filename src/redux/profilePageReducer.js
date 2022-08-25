@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "react-network/profile/ADD-POST";
@@ -77,8 +78,12 @@ export const getStatus = (userId) => async dispatch => {
 }
 
 export const updateStatus = status => async dispatch => {
-  let response = await profileAPI.updateStatus(status);
-  if (response.resultCode === 0) dispatch(setStatus(status));
+  try {
+    let response = await profileAPI.updateStatus(status);
+    if (response.resultCode === 0) dispatch(setStatus(status));
+  } catch (error) {
+    alert(error);
+  }
 }
 
 export const setNewAvatar = newAvatar => async dispatch => {
@@ -88,6 +93,34 @@ export const setNewAvatar = newAvatar => async dispatch => {
     dispatch(saveAvatarSuccess(response.data.photos))
   }
   dispatch(toogleIsFetching(false));
+}
+
+export const setNewProfileInfo = profile => async (dispatch, getState) => {
+  let userId = getState().auth.userId;
+  let response = await profileAPI.updateProfileInfo(profile);
+  if (response.resultCode === 0) {
+    dispatch(setUser(userId));
+  } else {
+    // let message = response.messages.length > 0 ? response.messages[0] : "Some error";
+    // let message = await response.messages[0];
+    // let propIndex = message.indexOf(">");
+    // let prop = message.slice(propIndex + 1, message.length -1).toLowerCase();
+    // let action = stopSubmit("editProfile", {"contacts": {[prop]: message}});
+    // debugger
+    // dispatch(action)
+    let Errors = {
+      contacts: {}
+    };
+    response.messages.forEach(message => {
+      let propIndex = message.indexOf(">");
+      let prop = message.slice(propIndex + 1, message.length -1).toLowerCase();
+      Errors.contacts[prop] = message
+      debugger
+    })
+    let action = stopSubmit("editProfile", Errors);
+    debugger
+    dispatch(action)
+  }
 }
 
 export default profilePageReducer;

@@ -26,12 +26,10 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     this.refreshProfile()
   }
 
   componentDidUpdate(prevProps) {
-    debugger
     if (prevProps.match.params.userId !== this.props.match.params.userId
       && prevProps.match.params.userId !== this.props.userId) {
       this.refreshProfile()
@@ -39,10 +37,14 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
+    debugger
     // if (!this.props.userId && !this.props.match.params.userId) return <Redirect to="/login" />
     return (
       <Profile {...this.props}
-        isOwner={!!!this.props.match.params.userId}
+        isOwner={
+          ((this.props.match.params.userId == this.props.userId) 
+          || !this.props.match.params.userId
+        )}
         profile={this.props.profile} 
         status={this.props.status} 
         updateStatus={this.props.updateStatus}

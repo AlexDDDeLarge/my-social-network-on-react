@@ -18,7 +18,7 @@ const MyPosts = React.memo( props => {
       </div>
       <div className={style.posts}>
         {props.posts.map(elem => (
-          <Post postId={elem.id} text={elem.text} likesCount={elem.likeCount} />
+          <Post key={elem.id} postId={elem.id} text={elem.text} likesCount={elem.likeCount} />
         ))}
       </div>
     </div>

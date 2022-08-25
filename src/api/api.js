@@ -51,7 +51,7 @@ export const authAPI = {
   }
 }
 
-export const profileAPI ={
+export const profileAPI = {
   setUser(userId) {
     return api.get(`/profile/${userId}`)
       .then(response => response.data);
@@ -75,7 +75,17 @@ export const profileAPI ={
       }
     })
       .then(response => response.data)
+  },
+  updateProfileInfo(profile) {
+    return api.put("/profile", profile)
+      .then(response => response.data);
   }
 }
 
+export const securityAPI = {
+  getCapchaUrl() {
+    return api.get("/security/get-captcha-url")
+      .then(response => response.data)
+  }
+}
  
