@@ -80,7 +80,8 @@ export const getStatus = (userId) => async dispatch => {
 export const updateStatus = status => async dispatch => {
   try {
     let response = await profileAPI.updateStatus(status);
-    if (response.resultCode === 0) dispatch(setStatus(status));
+    if (response.resultCode === 0) dispatch(setStatus(status))
+    else throw response.messages[0]
   } catch (error) {
     alert(error);
   }
@@ -101,20 +102,13 @@ export const setNewProfileInfo = profile => async (dispatch, getState) => {
   if (response.resultCode === 0) {
     dispatch(setUser(userId));
   } else {
-    // let message = response.messages.length > 0 ? response.messages[0] : "Some error";
-    // let message = await response.messages[0];
-    // let propIndex = message.indexOf(">");
-    // let prop = message.slice(propIndex + 1, message.length -1).toLowerCase();
-    // let action = stopSubmit("editProfile", {"contacts": {[prop]: message}});
-    // debugger
-    // dispatch(action)
     let Errors = {
       contacts: {}
     };
     response.messages.forEach(message => {
-      let propIndex = message.indexOf(">");
-      let prop = message.slice(propIndex + 1, message.length -1).toLowerCase();
-      Errors.contacts[prop] = message
+      let errorNameStartIndex = message.indexOf(">");
+      let errorName = message.slice(errorNameStartIndex + 1, message.length -1).toLowerCase();
+      Errors.contacts[errorName] = message
       debugger
     })
     let action = stopSubmit("editProfile", Errors);

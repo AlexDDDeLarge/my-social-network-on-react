@@ -1,7 +1,7 @@
 .container {
   margin: 0 15px 15px 15px;
   padding: 5px;
-  box-shadow: 0px 2px 6px rgba(229, 229, 229, 0.46);
+  box-shadow: 0px 2px 6px var(--box-shadow);
   border-radius: 3px;
 }
 

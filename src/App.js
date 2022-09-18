@@ -27,8 +27,14 @@ const Messages = lazy(() => import('./components/Messages/Messages'));
 const Friends = lazy(() => import('./components/Friends/Friends'));
 
 const App = props => {
+  const catchAllUnhandledErrors = (reason, promise) => {
+    alert(reason);
+  }
+
   useEffect(() => {
     props.initializeApp();
+    window.addEventListener("unhandledrejection", catchAllUnhandledErrors);
+    return window.removeEventListener("unhandledrejection", catchAllUnhandledErrors);
   }, [props.initialized])
 
   if (!props.initialized) return <Preloader/>
