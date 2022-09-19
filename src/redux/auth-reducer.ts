@@ -1,3 +1,4 @@
+import { setUser } from './profilePageReducer';
 import { stopSubmit } from "redux-form";
 import { authAPI, securityAPI } from "../api/api";
 
@@ -5,7 +6,15 @@ let SET_USER_DATA = "react-network/auth/SET-USER-DATA";
 let LOGOUT = "react-network/auth/LOGOUT";
 const GET_CAPCHA_URL_SUCCESS = "react-network/auth/GET_CAPCHA_URL_SUCCESS";
 
-let initialState = {
+type StateType = {
+  userId: number | null
+  email: string | null
+  login: string | null
+  isAuth: boolean
+  capchaUrl: string | null
+}
+
+let initialState: StateType = {
   userId: null,
   email: null,
   login: null,
@@ -13,7 +22,7 @@ let initialState = {
   capchaUrl: null
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): StateType => {
   switch (action.type) {
     case SET_USER_DATA: 
       return {
@@ -38,12 +47,24 @@ const authReducer = (state = initialState, action) => {
       return state;
   }
 }
+type SetAuthUserDataPayloadType = {
+  userId: number
+  email: string
+  login: string
+}
+type SetAuthUserDataType = {type: typeof SET_USER_DATA, data: SetAuthUserDataPayloadType}
+export const setAuthUserData = (userId: number, email: string, login: string): SetAuthUserDataType => ({
+  type: SET_USER_DATA, 
+  data: {
+    userId, email, login
+  }
+});
 
-export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {
-  userId, email, login
-}});
-export const getLogout = () => ({type: LOGOUT});
-export const getCapchaUrlSuccess = (capchaUrl) => ({type: GET_CAPCHA_URL_SUCCESS, payload: {capchaUrl}});
+type GetLogoutType = {type: typeof LOGOUT}
+export const getLogout = (): GetLogoutType => ({type: LOGOUT});
+
+type GetCapchaUrlSuccessType = {type: typeof GET_CAPCHA_URL_SUCCESS, payload: {capchaUrl: string}}
+export const getCapchaUrlSuccess = (capchaUrl): GetCapchaUrlSuccessType => ({type: GET_CAPCHA_URL_SUCCESS, payload: {capchaUrl}});
 
 //Thunks
 export const loginThunk = () => async dispatch => {

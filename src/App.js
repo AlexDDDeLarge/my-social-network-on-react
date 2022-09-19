@@ -12,12 +12,12 @@ import HeaderContainer from './components/Header/HeaderContainer';
 // import Login from './components/Login/Login';
 // import Messages from './components/Messages/Messages';
 import { connect, Provider } from 'react-redux';
-import { initializeApp } from './redux/app-reducer';
+import { initializeApp } from './redux/app-reducer.ts';
 import Preloader from './components/common/Preloader/Preloader';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import store from "./redux/reduxStore";
+import store from "./redux/reduxStore.js";
 import EditProfile from './components/EditProfile/EditProfile';
 
 const Login = lazy(() => import('./components/Login/Login'));
