@@ -17,12 +17,12 @@ import Preloader from './components/common/Preloader/Preloader';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import store from "./redux/reduxStore.js";
+import store from "./redux/reduxStore.ts";
 import EditProfile from './components/EditProfile/EditProfile';
 
 const Login = lazy(() => import('./components/Login/Login'));
 // const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
-const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
+const UsersContainer = lazy(() => import('./components/Users/UsersContainer.tsx'));
 const Messages = lazy(() => import('./components/Messages/Messages'));
 const Friends = lazy(() => import('./components/Friends/Friends'));
 

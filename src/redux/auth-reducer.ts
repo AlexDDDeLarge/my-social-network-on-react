@@ -53,7 +53,10 @@ type SetAuthUserDataPayloadType = {
   login: string
 }
 type SetAuthUserDataType = {type: typeof SET_USER_DATA, data: SetAuthUserDataPayloadType}
-export const setAuthUserData = (userId: number, email: string, login: string): SetAuthUserDataType => ({
+export const setAuthUserData = (
+  userId: number, 
+  email: string, 
+  login: string): SetAuthUserDataType => ({
   type: SET_USER_DATA, 
   data: {
     userId, email, login
@@ -64,10 +67,13 @@ type GetLogoutType = {type: typeof LOGOUT}
 export const getLogout = (): GetLogoutType => ({type: LOGOUT});
 
 type GetCapchaUrlSuccessType = {type: typeof GET_CAPCHA_URL_SUCCESS, payload: {capchaUrl: string}}
-export const getCapchaUrlSuccess = (capchaUrl): GetCapchaUrlSuccessType => ({type: GET_CAPCHA_URL_SUCCESS, payload: {capchaUrl}});
+export const getCapchaUrlSuccess = (capchaUrl: string): GetCapchaUrlSuccessType => ({
+  type: GET_CAPCHA_URL_SUCCESS, 
+  payload: {capchaUrl}
+});
 
 //Thunks
-export const loginThunk = () => async dispatch => {
+export const loginThunk = () => async (dispatch: any) => {
   let response = await authAPI.me()
   if (response.resultCode === 0) {
     let {id, email, login} = response.data;
@@ -75,13 +81,13 @@ export const loginThunk = () => async dispatch => {
   }
 }
 
-export const getCapchaUrl = () => async dispatch => {
+export const getCapchaUrl = () => async (dispatch: any) => {
   const response = await securityAPI.getCapchaUrl();
   const capchaUrl = response.url;
   dispatch(getCapchaUrlSuccess(capchaUrl));
 }
 
-export const signIn = (email, password, rememberMe, captcha) => async dispatch => {
+export const signIn = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
   let response = await authAPI.login(email, password, rememberMe, captcha);
   if (response.resultCode === 0) {
     dispatch( loginThunk() )
@@ -95,7 +101,7 @@ export const signIn = (email, password, rememberMe, captcha) => async dispatch =
   }
 }
 
-export const logout = () => async dispatch => {
+export const logout = () => async (dispatch: any) => {
   let response = await authAPI.logout();
   if (response.resultCode === 0) dispatch( getLogout() );
 }

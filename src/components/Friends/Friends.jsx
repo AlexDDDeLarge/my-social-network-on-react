@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { changePage, requestFriends, setFirstPage, toggleFollowingOfFriends } from '../../redux/friendsReducer';
-import Paginator from '../common/Preloader/Paginator/Paginator';
+import { changePage, requestFriends, setFirstPage, toggleFollowingOfFriends } from '../../redux/friendsReducer.ts';
+import Paginator from '../common/Preloader/Paginator/Paginator.tsx';
 import Preloader from '../common/Preloader/Preloader';
 import User from '../User/User';
 import style from './Friends.module.css'
@@ -31,7 +31,7 @@ const Friends = ({
       count
     )
   }
-  debugger
+  
   return (
     <div>
       <Paginator page={page} count={count} 

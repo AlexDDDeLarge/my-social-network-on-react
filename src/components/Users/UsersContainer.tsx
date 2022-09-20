@@ -2,19 +2,36 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import { AppStateType } from "../../redux/reduxStore";
 import { getCurrentPageSelector, getFollowingInProgressSelector, 
   getIsFetchingSelector, getPageSizeSelector, 
-  getTotalPageCountSelector, getUsersPortionSize, getUsersSelector, getUsersSelectorSuper 
+  getTotalPageCountSelector, getUsersPortionSize, getUsersSelector, //getUsersSelectorSuper 
 } from "../../redux/users-selectors";
 import { changePage, requestSearchUser, requestUsers,
   setFirstPage,
   toggleFollowing
 } from "../../redux/usersPageReducer";
+import { UserType } from "../../types/types";
 import Users from "./Users";
 
-class UsersContainer extends React.Component {
+type PropsType = {
+  requestUsers: (page: number, count: number) => void
+  page: number 
+  count: number
+  setFirstPage: () => void
+  changePage: (page: number) => void
+  users: Array<UserType>  
+  totalCount: number
+  isFetching: boolean
+  followingInProgress: boolean
+  toggleFollowing: () => void
+  portionSize: number
+  requestSearchUser: () => void
+}
 
-  constructor (props) {
+class UsersContainer extends React.Component<PropsType> {
+
+  constructor (props: PropsType) {
     super(props);
   }
 
@@ -29,7 +46,7 @@ class UsersContainer extends React.Component {
     this.props.setFirstPage();
   }
 
-  onPageChanged = (page) => {
+  onPageChanged = (page: number): void => {
     this.props.changePage(page);
     this.props.requestUsers(
       page,
@@ -55,7 +72,7 @@ class UsersContainer extends React.Component {
   }
 } 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   console.log("mStP")
   return {
     users: getUsersSelector(state),
@@ -78,4 +95,5 @@ export default compose(
     setFirstPage
   }),
   withAuthRedirect
+// @ts-ignore
 )(UsersContainer);

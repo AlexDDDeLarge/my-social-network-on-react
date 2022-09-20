@@ -4,8 +4,24 @@ import Preloader from "../common/Preloader/Preloader";
 import Paginator from "../common/Preloader/Paginator/Paginator";
 import User from "../User/User";
 import UserSearch from "./UserSearch/UserSearch";
+import { UserType } from "../../types/types";
 
-const Users = ({page, 
+type PropsType = {
+  page: number
+  onPageChanged: (pageNumber: number) => void
+  totalCount: number
+  count: number
+  users: Array<UserType>
+  followingInProgress: boolean
+  toggleFollowing: () => void
+  portionSize: number
+  requestSearchUser: () => void
+  isFetching: boolean
+  changePage: (page: number) => void
+}
+
+const Users: React.FC<PropsType> = ({
+  page, 
   onPageChanged, 
   totalCount, 
   count, 
@@ -14,6 +30,7 @@ const Users = ({page,
   toggleFollowing, 
   portionSize,  
   requestSearchUser,
+  isFetching,
   ...props}) => {
   return (
     <div className={styles.users}>
@@ -21,7 +38,7 @@ const Users = ({page,
       <Paginator page={page} onPageChanged={onPageChanged} 
         totalCount={totalCount} count={count} portionSize={portionSize}/>
 
-      {props.isFetching == true && <Preloader/>}
+      {isFetching == true && <Preloader/>}
       
       {users.map(el => (
         <User 

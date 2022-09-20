@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
-import { setNewProfileInfo, setUser } from "../../redux/profilePageReducer";
+import { setNewProfileInfo, setUser } from "../../redux/profilePageReducer.ts";
 import { CreateField, CustonInput, TextArea } from "../FormControls/FormControls";
 
 let Form = ({handleSubmit, error, profile}) => {

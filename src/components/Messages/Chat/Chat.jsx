@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sendMessage } from "../../../redux/messagesPageReducer";
+import { sendMessage } from "../../../redux/messagesPageReducer.ts";
 import style from './Chat.module.css'
 import ChatMessage from './ChatMessage/ChatMessage';
 import SendMessageForm from "./SendMessageForm/SendMessageForm";

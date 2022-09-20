@@ -1,6 +1,23 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-let initialState = {
+type MessageChatType = {
+  dialogWithUser: string 
+  type: string
+  text: string
+}
+
+type UserChatType = {
+  userId: string
+  firstName: string
+  lastName: string
+  messages: Array<MessageChatType>
+}
+
+type StateType = {
+  dialogs: Array<UserChatType>
+}
+
+let initialState: StateType = {
   dialogs: [
     {userId: "u2", firstName: "Leyla", lastName: "A", messages: [
       {dialogWithUser: "u2", type: "toMe", text: "Hi, Dima. what's cooking good loking?"},
@@ -21,7 +38,7 @@ let initialState = {
   ]
 }
 
-const messagesPageReducer = (state = initialState, action) => {
+const messagesPageReducer = (state = initialState, action: any): StateType => {
   switch (action.type) {
     case SEND_MESSAGE:
       return {
@@ -42,7 +59,16 @@ const messagesPageReducer = (state = initialState, action) => {
   }
 }
 
-export const sendMessage = function (newMessageBody, dialogWithUser) {
+type SendMessageType = {
+  type: typeof SEND_MESSAGE
+  newMessageBody: string
+  typeOfMessage: "fromMe"
+  dialogWithUser: string
+}
+
+export const sendMessage = function (
+  newMessageBody: string, 
+  dialogWithUser: string): SendMessageType {
   return {
     type: SEND_MESSAGE,
     newMessageBody,

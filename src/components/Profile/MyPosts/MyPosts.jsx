@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addPost } from "../../../redux/profilePageReducer";
+import { addPost } from "../../../redux/profilePageReducer.ts";
 import style from "./MyPosts.module.css";
 import NewPostForm from "./NewPostForm/NewPostForm";
 import Post from "./Post/Post";

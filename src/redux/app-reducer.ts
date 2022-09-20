@@ -27,7 +27,7 @@ type InitializedSuccessType = {
 }
 export const initializedSuccess = (): InitializedSuccessType => ({type: INITIALIZED_SUCCESS});
 
-export const initializeApp = () => async (dispatch) => {
+export const initializeApp = () => async (dispatch: any) => {
   await dispatch( loginThunk() );
   dispatch( initializedSuccess() );
 }
