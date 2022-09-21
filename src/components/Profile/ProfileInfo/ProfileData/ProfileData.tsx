@@ -2,8 +2,14 @@ import React from "react";
 import style from "./ProfileData.module.css"
 import ContactItem from "../ContactItem/ContactItem";
 import { NavLink } from "react-router-dom";
+import { ProfileType } from "../../../../types/types";
 
-let ProfileData = ({profile, profile: {
+type PropsType = {
+  profile: ProfileType
+  isOwner: boolean
+}
+
+const ProfileData: React.FC<PropsType> = ({profile: {
   aboutMe, contacts,
   contacts: {
     facebook, website, vk,

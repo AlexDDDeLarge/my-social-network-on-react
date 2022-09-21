@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProfileStatus.module.css"
 
-const ProfileStatus = props => {
-  let [editMode, setEditMode] = useState(false);
-  let [status, setStatus] = useState(props.status);
+type PropsType = {
+  status: string
+  updateStatus: (status: string) => void
+}
 
-  // useEffect(() => {
-  //   if (status !== props.status && !editMode) {
-  //     setStatus(props.status)
-  //   }
-  // })
+const ProfileStatus: React.FC<PropsType> = props => {
+  let [editMode, setEditMode] = useState<boolean>(false);
+  let [status, setStatus] = useState<string>(props.status);
 
  useEffect(() => {
     setStatus(props.status)
   }, [props.status])
 
-  let activateEditMode = () => { 
+  let activateEditMode = (): void => { 
     if (!editMode) {
       setEditMode(true);
     } else {
@@ -24,7 +23,7 @@ const ProfileStatus = props => {
     }
   }
 
-  let onStatusChange = e => {
+  let onStatusChange = (e: any): void => {
     setStatus(e.currentTarget.value)
   }
 

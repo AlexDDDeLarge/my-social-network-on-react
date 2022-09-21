@@ -1,12 +1,37 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { changePage, requestFriends, setFirstPage, toggleFollowingOfFriends } from '../../redux/friendsReducer.ts';
-import Paginator from '../common/Preloader/Paginator/Paginator.tsx';
+import { changePage, requestFriends, setFirstPage, toggleFollowingOfFriends } from '../../redux/friendsReducer';
+import { AppStateType } from '../../redux/reduxStore';
+import { UserType } from '../../types/types';
+import Paginator from '../common/Preloader/Paginator/Paginator';
 import Preloader from '../common/Preloader/Preloader';
 import User from '../User/User';
 import style from './Friends.module.css'
 
-const Friends = ({
+type MapStatePropsType = {
+  friends: Array<UserType>
+  totalCount: number
+  count: number
+  page: number
+  isFetching: boolean
+  followingInProgress: Array<number>
+  portionSize: number
+}
+
+type MapDispatchPropsType = {
+  requestFriends: (page: number, count: number) => void
+  toggleFollowingOfFriends: (id: number, willBeFollow: boolean) => void 
+  changePage: (pageNumber: number) => void
+  setFirstPage: () => void
+}
+
+type OwnPropsType = {
+
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+const Friends: React.FC<PropsType> = ({
   requestFriends,
   toggleFollowingOfFriends,
   changePage,
@@ -24,7 +49,7 @@ const Friends = ({
     return setFirstPage();
   }, [count]);
 
-  let onPageChenged = currentPage => {
+  let onPageChenged = (currentPage: number): void => {
     changePage(currentPage);
     requestFriends(
       currentPage,
@@ -50,7 +75,7 @@ const Friends = ({
   )
 }
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
   friends: state.friends.friends,
   totalCount: state.friends.totalCount,
   count: state.friends.pageSize,
@@ -60,9 +85,11 @@ let mapStateToProps = (state) => ({
   portionSize: state.friends.portionSize
 });
 
-export default connect(mapStateToProps, {
-  requestFriends,
-  toggleFollowingOfFriends,
-  changePage,
-  setFirstPage
+export default connect
+  <MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
+  (mapStateToProps, {
+    requestFriends,
+    toggleFollowingOfFriends,
+    changePage,
+    setFirstPage
 })(Friends);

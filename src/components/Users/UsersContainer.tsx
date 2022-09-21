@@ -14,20 +14,29 @@ import { changePage, requestSearchUser, requestUsers,
 import { UserType } from "../../types/types";
 import Users from "./Users";
 
-type PropsType = {
-  requestUsers: (page: number, count: number) => void
+type MapStatePropsType = {
   page: number 
   count: number
-  setFirstPage: () => void
-  changePage: (page: number) => void
   users: Array<UserType>  
   totalCount: number
   isFetching: boolean
-  followingInProgress: boolean
-  toggleFollowing: () => void
+  followingInProgress: number[]
   portionSize: number
-  requestSearchUser: () => void
+} 
+
+type MapDaispatchPropsType = {
+  requestSearchUser: (userName: string, count: number, page: number) => void
+  toggleFollowing: (id: number, isFollow: boolean) => void
+  changePage: (page: number) => void
+  requestUsers: (page: number, count: number) => void
+  setFirstPage: () => void
 }
+
+type OwnPropsType = {
+// here types are defined to own component props
+}
+
+type PropsType = MapStatePropsType & MapDaispatchPropsType & OwnPropsType
 
 class UsersContainer extends React.Component<PropsType> {
 
@@ -72,7 +81,7 @@ class UsersContainer extends React.Component<PropsType> {
   }
 } 
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   console.log("mStP")
   return {
     users: getUsersSelector(state),
@@ -86,8 +95,10 @@ let mapStateToProps = (state: AppStateType) => {
   }
 }
 
-export default compose(
-  connect(mapStateToProps, {
+export default compose<React.Component>(
+  connect
+    <MapStatePropsType, MapDaispatchPropsType, OwnPropsType, AppStateType>
+    (mapStateToProps, {
     requestUsers,
     toggleFollowing,
     changePage,
@@ -95,5 +106,4 @@ export default compose(
     setFirstPage
   }),
   withAuthRedirect
-// @ts-ignore
 )(UsersContainer);

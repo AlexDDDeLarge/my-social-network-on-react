@@ -1,5 +1,5 @@
 import { usersAPI } from "../api/api";
-import { UserType } from "../types/types";
+import { ThunkActionType, UserType } from "../types/types";
 import { updateObjectArray } from "../utils/validators/objectHelpers";
 
 const FOLLOW = "react-network/users/FOLLOW";
@@ -83,14 +83,9 @@ const usersPageReducer = (state = initialState, action: UsersActionsType): State
 };
 
 //Action creators
-export type UsersActionsType = 
-  FollowActionType  
-  | UnfollowActionType
-  | SetUsersActionType
-  | SetTotalCountActionType
-  | ChangePageActionType
-  | IsFetchingCompletedActionType
-  | ToogleIsFollowingProgressActionType
+export type UsersActionsType = FollowActionType | UnfollowActionType
+  | SetUsersActionType | SetTotalCountActionType | ChangePageActionType
+  | IsFetchingCompletedActionType | ToogleIsFollowingProgressActionType
   | SetFirstPageActionType
 
 type FollowActionType = {type: typeof FOLLOW, userId: number}
@@ -134,20 +129,23 @@ export const setFirstPage = (): SetFirstPageActionType => ({type: SET_FIRST_PAGE
 // Thunks
 // type DispatchType = (action: ActionsType) => void
 
-export const requestSearchUser = (userName: string, count: number, page: number) => async (dispatch: any) => {
+export const requestSearchUser = (userName: string, count: number, page: number): 
+  ThunkActionType<void, unknown> => async (dispatch) => {
   dispatch(isFetchingCompleted(true));
   let data = await usersAPI.searchUser(userName, count, page);
   dispatch(setUsers(data.items));
   dispatch(isFetchingCompleted(false));
 }
-export const requestUsers = (page: number, count: number) => async (dispatch: any) => {
+export const requestUsers = (page: number, count: number):
+  ThunkActionType<void, unknown> => async (dispatch) => {
   dispatch(isFetchingCompleted(true));
   let data = await usersAPI.getUsers(page, count);
   dispatch(setUsers(data.items));
   dispatch(setTotalCount(data.totalCount));
   dispatch(isFetchingCompleted(false));
 };
-export const toggleFollowing = (id: number, willBeFollow: boolean) => async (dispatch: any) => {
+export const toggleFollowing = (id: number, willBeFollow: boolean):
+  ThunkActionType<void, unknown> => async (dispatch) => {
   dispatch(toogleIsFollowingProgress(true, id));
   let data = await (willBeFollow ? usersAPI.follow(id) : usersAPI.unfollow(id));
   if (data.resultCode == 0) {

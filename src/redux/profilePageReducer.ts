@@ -1,7 +1,7 @@
-import { AvatarType } from './../types/types';
+import { AvatarType, ThunkActionType } from './../types/types';
 import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
-import { PostType } from "../types/types";
+import { PostType, ProfileType } from "../types/types";
 
 const ADD_POST = "react-network/profile/ADD-POST";
 const SET_USER_PROFILE = "react-network/profile/SET-USER-PROFILE";
@@ -10,33 +10,10 @@ const DELETE_POST = "react-network/profile/DELETE-POST";
 const SAVE_AVATAR_SUCCESS = "react-network/profile/SAVE_AVATAR_SUCCESS";
 const TOGGLE_IS_FETCHNG = "react-network/profile/TOGGLE_IS_FETCHNG";
 
-type ContactsType = {
-  facebook: string | null
-  website: string | null 
-  vk: string | null
-  twitter: string | null
-  instagram: string | null
-  youtube: string | null
-  github: string | null
-  mainLink: string | null
-}
-
-type ProfileType = {
-  aboutMe?: string | null | undefined
-  contacts?: ContactsType | undefined
-  lookingForAJob: boolean | undefined
-  lookingForAJobDescription: string | null | undefined
-  fullName: string | undefined
-  userId: number | undefined
-  photos: AvatarType | null | undefined
-  status: string | null | undefined
-  isFetching: boolean | undefined
-}
-
 type StateType = {
   posts: Array<PostType>
   profile: ProfileType | null
-  status: string | null
+  status: string
   isFetching: boolean
 }
 
@@ -119,17 +96,21 @@ export const saveAvatarSuccess = (newAvatar: AvatarType): SaveAvatarSuccessActio
 type ToogleIsFetchingActionType = {type: typeof TOGGLE_IS_FETCHNG, isFetching: boolean};
 export const toogleIsFetching = (isFetching: boolean): ToogleIsFetchingActionType => ({type: TOGGLE_IS_FETCHNG, isFetching});
 
-export const setUser = (userId: number) => async (dispatch: any) => { 
+//Thunks
+export const setUser = (userId: number):
+  ThunkActionType<void, unknown> => async (dispatch) => { 
   let data = await profileAPI.setUser(userId);
   dispatch(setUserProfile(data));
 }
 
-export const getStatus = (userId: number) => async (dispatch: any) => { 
+export const getStatus = (userId: number):
+  ThunkActionType<void, unknown> => async (dispatch) => { 
   let response = await profileAPI.getStatus(userId);
   dispatch(setStatus(response));
 }
 
-export const updateStatus = (status: string) => async (dispatch: any) => {
+export const updateStatus = (status: string):
+  ThunkActionType<void, unknown> => async (dispatch) => {
   try {
     let response = await profileAPI.updateStatus(status);
     if (response.resultCode === 0) dispatch(setStatus(status))
@@ -139,7 +120,8 @@ export const updateStatus = (status: string) => async (dispatch: any) => {
   }
 }
 
-export const setNewAvatar = (newAvatar: any) => async (dispatch: any) => {
+export const setNewAvatar = (newAvatar: any):
+  ThunkActionType<void, unknown> => async (dispatch) => {
   dispatch(toogleIsFetching(true));
   let response = await profileAPI.updateAvatar(newAvatar);
   if (response.resultCode === 0) {
@@ -148,16 +130,18 @@ export const setNewAvatar = (newAvatar: any) => async (dispatch: any) => {
   dispatch(toogleIsFetching(false));
 }
 
-export const setNewProfileInfo = (profile: PostType) => async (dispatch: any, getState: any) => {
+export const setNewProfileInfo = (profile: PostType):
+  ThunkActionType<void, unknown> => async (dispatch, getState) => {
   let userId = getState().auth.userId;
   let response = await profileAPI.updateProfileInfo(profile);
-  if (response.resultCode === 0) {
+  if (response.resultCode === 0 && userId) {
     dispatch(setUser(userId));
   } else {
     type ErrorsType = {
       contacts: {
         [key: string]: string
       }
+      // {[key: string]: string} === Record<string, string>
     } 
     let Errors:ErrorsType  = {
       contacts: {}

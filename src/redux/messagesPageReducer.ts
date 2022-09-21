@@ -38,7 +38,7 @@ let initialState: StateType = {
   ]
 }
 
-const messagesPageReducer = (state = initialState, action: any): StateType => {
+const messagesPageReducer = (state = initialState, action: MessagesActionsType): StateType => {
   switch (action.type) {
     case SEND_MESSAGE:
       return {
@@ -59,16 +59,15 @@ const messagesPageReducer = (state = initialState, action: any): StateType => {
   }
 }
 
+export type MessagesActionsType = SendMessageType
+
 type SendMessageType = {
   type: typeof SEND_MESSAGE
   newMessageBody: string
   typeOfMessage: "fromMe"
   dialogWithUser: string
 }
-
-export const sendMessage = function (
-  newMessageBody: string, 
-  dialogWithUser: string): SendMessageType {
+export const sendMessage = function ( newMessageBody: string, dialogWithUser: string): SendMessageType {
   return {
     type: SEND_MESSAGE,
     newMessageBody,

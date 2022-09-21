@@ -2,15 +2,22 @@ import React from "react";
 import styles from "./Users.module.css";
 import userDefaultPic from "../../assets/images/user.jpg";
 import { NavLink } from "react-router-dom";
+import { UserType } from "../../types/types";
 
-const User = ({user, followingInProgress, toggleFollowing}) => {
+type PropsType = {
+  user: UserType
+  followingInProgress: Array<number>
+  toggleFollowing: (id: number, isFollow: boolean) => void
+}
+
+const User: React.FC<PropsType> = ({user, followingInProgress, toggleFollowing}) => {
   return (
     <div className={styles.item} key={user.id}>
       <NavLink to={`/profile/${user.id}`}>
         <img
           className={styles.avatar}
           src={
-            (user.photos.small == true)
+            (user.photos.small)
               ? user.photos.small
               : userDefaultPic
           }

@@ -1,5 +1,5 @@
 import { usersAPI } from "../api/api";
-import { UserType } from "../types/types";
+import { ThunkActionType, UserType } from "../types/types";
 import { updateObjectArray } from "../utils/validators/objectHelpers";
 
 const SET_FRIENDS = "react-network/friends/SET-FRIENDS"
@@ -81,7 +81,7 @@ const friendsReducer = (state = initialState, action: FriendsActionsType): State
   }
 }
 //Actions
-type FriendsActionsType = 
+export type FriendsActionsType = 
   SetFriendsActionType
   | SetTotalCountActionType
   | FollowActionType
@@ -116,14 +116,16 @@ type ToogleIsFollowingProgressActionType = {type: typeof TOGGLE_IS_FOLLOWING_IN_
 export const toogleIsFollowingProgress = (inProgress: boolean, id: number): ToogleIsFollowingProgressActionType => ({type: TOGGLE_IS_FOLLOWING_IN_PROGRESS, inProgress, id});
 
 //Thunks
-export const requestFriends = (page: number, count: number) => async (dispatch: any) => {
+export const requestFriends = (page: number, count: number):
+  ThunkActionType<void, unknown> => async (dispatch) => {
   dispatch(isFetchingCompleted(true));
   let data = await usersAPI.getFriends(page, count);
   dispatch(setFriends(data.items));
   dispatch(setTotalCount(data.totalCount))
   dispatch(isFetchingCompleted(false));
 }
-export const toggleFollowingOfFriends = (id: number, willBeFollow: boolean) => async (dispatch: any) => {
+export const toggleFollowingOfFriends = (id: number, willBeFollow: boolean):
+  ThunkActionType<void, unknown> => async (dispatch) => {
   dispatch(toogleIsFollowingProgress(true, id));
   let data = await (willBeFollow ? usersAPI.follow(id) : usersAPI.unfollow(id));
   if (data.resultCode === 0) {

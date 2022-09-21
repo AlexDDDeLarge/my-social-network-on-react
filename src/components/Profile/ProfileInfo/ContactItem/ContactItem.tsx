@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from './ContactItem.module.css'
 
-const ContactItem = ({source, link}) => {
+type PropsType = {
+  source: string
+  link: string 
+}
+
+const ContactItem: React.FC<PropsType> = ({source, link}) => {
   return <div className={styles.item}>
     <span className={styles.title}>{source}</span>
     <span className={styles.link}>

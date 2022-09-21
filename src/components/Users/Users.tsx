@@ -12,10 +12,10 @@ type PropsType = {
   totalCount: number
   count: number
   users: Array<UserType>
-  followingInProgress: boolean
-  toggleFollowing: () => void
+  followingInProgress: number[]
+  toggleFollowing: (id: number, isFollow: boolean) => void
   portionSize: number
-  requestSearchUser: () => void
+  requestSearchUser: (userName: string, count: number, page: number) => void
   isFetching: boolean
   changePage: (page: number) => void
 }

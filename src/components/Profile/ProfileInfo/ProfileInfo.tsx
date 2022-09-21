@@ -6,8 +6,18 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 // import ContactItem from "./ContactItem/ContactItem";
 // import { NavLink } from "react-router-dom";
 import ProfileData from "./ProfileData/ProfileData";
+import { ProfileType } from "../../../types/types";
 
-function ProfileInfo (props) {
+type PropsType = {
+  isOwner: boolean
+  profile: ProfileType
+  status: string
+  updateStatus: (status: string) => void
+  setNewAvatar: (newAvatar: any) => void
+  isFetching: boolean
+}
+
+const ProfileInfo: React.FC<PropsType> = (props) => {
   if (!props.profile) {
     return <Preloader />
   } 
@@ -15,12 +25,11 @@ function ProfileInfo (props) {
   let  {
     isOwner, setNewAvatar, isFetching,
     profile, profile: {
-      aboutMe, lookingForAJob, lookingForAJobDescription, 
-      fullName, userId
+      fullName, photos
     }
   } = props;
 
-  let onAvatacrSelected = (e) => {
+  let onAvatacrSelected = (e: any) => {
     if (e.target.files.length) setNewAvatar(e.target.files[0]);
   }
 
@@ -31,7 +40,7 @@ function ProfileInfo (props) {
           {isFetching ? <Preloader /> : <img 
             className={style.avatar}
             src={
-              (profile.photos.large) ? profile.photos.large : defaultImage
+              (photos.large) ? photos.large : defaultImage
             }
             alt="avatar"
           />}
