@@ -82,7 +82,7 @@ type AddPostActionType = {type: typeof ADD_POST, newPostBody: string};
 export const addPost = (newPostBody: string): AddPostActionType => ({type: ADD_POST, newPostBody});
 
 type SetUserProfileActionType = {type: typeof SET_USER_PROFILE, profile:any};
-export const setUserProfile = (profile: PostType): SetUserProfileActionType => ({type: SET_USER_PROFILE, profile});
+export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({type: SET_USER_PROFILE, profile});
 
 type SetStatusActionType = {type: typeof SET_STATUS, status: string};
 export const setStatus = (status: string): SetStatusActionType => ({type: SET_STATUS, status});
@@ -130,7 +130,7 @@ export const setNewAvatar = (newAvatar: any):
   dispatch(toogleIsFetching(false));
 }
 
-export const setNewProfileInfo = (profile: PostType):
+export const setNewProfileInfo = (profile: ProfileType):
   ThunkActionType<void, unknown> => async (dispatch, getState) => {
   let userId = getState().auth.userId;
   let response = await profileAPI.updateProfileInfo(profile);

@@ -1,10 +1,19 @@
 import React from 'react';
-import { Field } from 'redux-form';
+import { Field, InjectedFormProps } from 'redux-form';
 import { reduxForm } from 'redux-form';
 import { maxPostBodyLength, minPostBodyLength, required } from '../../../../utils/validators/validators';
 import { TextArea } from '../../../FormControls/FormControls';
+import { NewPostFormDataType } from '../MyPosts';
 
-let NewPostForm = props => {
+type PropsType = {
+  style: {
+    form: string
+    textArea: string
+    submitButton: string
+  }
+}
+
+let NewPostForm: React.FC<InjectedFormProps<NewPostFormDataType, PropsType> & PropsType> = props => {
   return (
     <form
       onSubmit={props.handleSubmit}
@@ -24,4 +33,4 @@ let NewPostForm = props => {
   )
 }
 
-export default reduxForm({form: "newPostForm"})(NewPostForm);
+export default reduxForm<NewPostFormDataType, PropsType>({form: "newPostForm"})(NewPostForm);

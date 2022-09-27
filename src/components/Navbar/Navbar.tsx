@@ -1,9 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { AppStateType } from '../../redux/reduxStore';
 import style from './Navbar.module.css'
 import NavItem from './NavItem/NavItem';
 
-const Navbar = (props) => {
+type MapStatePropsType = {
+  authUserId: number | null
+}
+type MapDispatchPropsType = {}
+type OwnPropsType = {}
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+const Navbar: React.FC<PropsType> = (props) => {
   console.log("render")
   return (
     <nav className={style.nav}>
@@ -23,8 +31,10 @@ const Navbar = (props) => {
   )
 }
 
-let mapStateToProps = state => ({
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
   authUserId: state.auth.userId
 })
 
-export default connect(mapStateToProps, null)(Navbar);
+export default connect
+  <MapStatePropsType, MapDispatchPropsType | null, OwnPropsType, AppStateType>
+  (mapStateToProps, null)(Navbar);

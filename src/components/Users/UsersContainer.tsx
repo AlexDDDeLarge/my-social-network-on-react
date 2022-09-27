@@ -95,7 +95,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-export default compose<React.Component>(
+export default compose<React.ComponentClass>(
   connect
     <MapStatePropsType, MapDaispatchPropsType, OwnPropsType, AppStateType>
     (mapStateToProps, {

@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Header.module.css'
 
-const Header = (props) => {
+type PropsType = {
+  isAuth: boolean
+  login: string | null
+  logout: () => void
+}
+
+const Header: React.FC<PropsType> = (props) => {
   let [colorTheme, setColorTheme] = useState("light");
 
   useEffect(() => {
-    let html = document.querySelector("html");
+    let html: HTMLHtmlElement | null = document.querySelector("html");
 
-    html.classList.add(colorTheme);
+    html && html.classList.add(colorTheme);
     
-    if (colorTheme === "light" && html.classList.contains("dark")) {
+    if (colorTheme === "light" && html && html.classList.contains("dark")) {
       html.classList.remove("dark");
-    } else if (colorTheme === "dark" && html.classList.contains("light")) {
+    } else if (colorTheme === "dark" && html && html.classList.contains("light")) {
       html.classList.remove("light"); 
     }
   }, [colorTheme]);

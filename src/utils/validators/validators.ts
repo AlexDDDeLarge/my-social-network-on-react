@@ -1,14 +1,16 @@
-export const required = value => {
+export type FieldValidatorType = (value?: string) => string | undefined
+
+export const required: FieldValidatorType = (value) => {
   if (value) return undefined;
   return 'Field is required';
 }
 
-const maxLength = max => value => {
+const maxLength = (max: number): FieldValidatorType => (value) => {
   if (value && value.length <= max) return undefined;
   return `The entered text must be not longer ${max} symbols`;
 }
 
-const minLength = min => value => {
+const minLength = (min: number): FieldValidatorType => (value) => {
   if (value && value.length >= min) return undefined;
   return `The entered text must be not longer ${min} symbols`;
 }

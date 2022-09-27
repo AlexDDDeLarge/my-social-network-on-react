@@ -2,6 +2,7 @@ import { setUser } from './profilePageReducer';
 import { stopSubmit } from "redux-form";
 import { authAPI, securityAPI } from "../api/api";
 import { ThunkActionType } from '../types/types';
+import { ResultCodesEnum } from '../types/apiTypes';
 
 const SET_USER_DATA = "react-network/auth/SET-USER-DATA";
 const LOGOUT = "react-network/auth/LOGOUT";
@@ -80,7 +81,7 @@ export const getCapchaUrlSuccess = (capchaUrl: string): GetCapchaUrlSuccessType 
 export const loginThunk = (): 
   ThunkActionType<void, unknown> => async (dispatch: any) => {
   let response = await authAPI.me()
-  if (response.resultCode === 0) {
+  if (response.resultCode === ResultCodesEnum.Success) {
     let {id, email, login} = response.data;
     dispatch(setAuthUserData(id, email, login));
   }
@@ -99,7 +100,7 @@ export const signIn = (email: string, password: string, rememberMe: boolean, cap
   if (response.resultCode === 0) {
     dispatch( loginThunk() )
   } else {
-    if (response.resultCode === 10) {
+    if (response.resultCode === ResultCodesEnum.CaptchaIsRequired) {
       dispatch(getCapchaUrl());
     }
     let message = response.messages.length > 0 ? response.messages[0] : "Some error";

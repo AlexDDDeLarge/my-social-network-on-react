@@ -85,7 +85,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-export default compose<React.Component>(
+export default compose<React.ComponentClass>(
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
     (mapStateToProps, {setUser, getStatus, updateStatus, setNewAvatar}),
   withRouter

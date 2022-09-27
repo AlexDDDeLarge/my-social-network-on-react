@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import './App.css';
 import { Redirect, Route } from 'react-router-dom';
 import Svgs from './components/Svgs/Svgs';
-import Navbar from './components/Navbar/Navbar.jsx';
+import Navbar from './components/Navbar/Navbar';
 // import Friends from './components/Friends/Friends';
 // import News from './components/News/News';
 // import Settings from './components/Settings/Settings';
@@ -12,22 +12,31 @@ import HeaderContainer from './components/Header/HeaderContainer';
 // import Login from './components/Login/Login';
 // import Messages from './components/Messages/Messages';
 import { connect, Provider } from 'react-redux';
-import { initializeApp } from './redux/app-reducer.ts';
+import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import store from "./redux/reduxStore.ts";
+import store, { AppStateType } from "./redux/reduxStore";
 import EditProfile from './components/EditProfile/EditProfile';
 
 const Login = lazy(() => import('./components/Login/Login'));
 // const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
-const UsersContainer = lazy(() => import('./components/Users/UsersContainer.tsx'));
+const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 const Messages = lazy(() => import('./components/Messages/Messages'));
 const Friends = lazy(() => import('./components/Friends/Friends'));
 
-const App = props => {
-  const catchAllUnhandledErrors = (reason, promise) => {
+type MSPType = {
+  initialized: boolean
+}
+type MDPType = {
+  initializeApp: () => void
+}
+type OPType = {}
+type PropsType = MSPType & MDPType & OPType
+
+const App: React.FC<PropsType> = props => {
+  const catchAllUnhandledErrors = (reason?: any, promise?: Promise<any>): void => {
     alert(reason);
   }
 
@@ -61,16 +70,20 @@ const App = props => {
   )
 }
 
-let mapStateToProps = state => ({
+let mapStateToProps = (state: AppStateType): MSPType => ({
   initialized: state.app.initialized
 })
 
-let AppContainer = compose(
+let AppContainer = compose<React.FC>(
   withRouter,
-  connect(mapStateToProps, {initializeApp})
+  connect
+    <MSPType, MDPType, OPType, AppStateType>
+    (mapStateToProps, {initializeApp})
 )(App);
 
-let GeneralApp = props => {
+type GeneralAppPropsType = {}
+
+let GeneralApp: React.FC<PropsType> = props => {
   return (
     <React.StrictMode>
       <BrowserRouter> 

@@ -1,10 +1,11 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
+import { InjectedFormProps, reduxForm } from 'redux-form';
 import { Field } from 'redux-form';
 import { minMessageBodyLength, required } from '../../../../utils/validators/validators';
 import { TextArea } from '../../../FormControls/FormControls';
+import { SendMessageFormDataType } from '../Chat';
 
-let SendMessageForm = props => {
+let SendMessageForm: React.FC<InjectedFormProps<SendMessageFormDataType, any, string>> = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <Field 
@@ -18,4 +19,4 @@ let SendMessageForm = props => {
   )
 }
 
-export default reduxForm({form: "dialogAddMessageForm"})(SendMessageForm);
+export default reduxForm<SendMessageFormDataType, any>({form: "dialogAddMessageForm"})(SendMessageForm);

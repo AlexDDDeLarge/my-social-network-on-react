@@ -1,12 +1,15 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-type MessageChatType = {
+export type MessageTypeType = "toMe" | "fromMe" | "forwardedToMe" 
+| "forwardedFromMe" | "replyToMe" | "replyFromMe"
+
+export type MessageChatType = {
   dialogWithUser: string 
-  type: string
+  type: MessageTypeType
   text: string
 }
 
-type UserChatType = {
+export type UserChatType = {
   userId: string
   firstName: string
   lastName: string
